@@ -38,9 +38,4 @@ public class SportReportActivity extends AppCompatActivity {
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(new SportReportRVAdapter(this,list));
     }
-
 }
-
-
-
-

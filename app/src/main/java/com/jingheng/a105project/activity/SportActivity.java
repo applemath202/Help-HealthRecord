@@ -18,8 +18,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-
-
 public class SportActivity extends AppCompatActivity implements View.OnClickListener {
 
     // ui
@@ -51,11 +49,10 @@ public class SportActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.bt_activity_blood_save:
+            case R.id.bt_activity_sport_save:
                 Sport sport = new Sport(
                         et_sport_name.getText().toString(),
                         et_sport_time.getText().toString(),
-
                         date
                 );
                 daoSport.insert(sport);
@@ -63,7 +60,7 @@ public class SportActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.iv_activity_sport_report:
-                startActivity(new Intent(this, Sport.class));
+                startActivity(new Intent(this, SportReportActivity.class));
                 break;
         }
     }

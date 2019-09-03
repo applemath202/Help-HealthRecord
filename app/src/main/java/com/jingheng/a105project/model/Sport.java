@@ -14,6 +14,9 @@ public class Sport {
         this.sportTime = sportTime;
         this.createDate = createDate;
     }
+
+    public Sport(){ sports = new ArrayList<>(); }
+
     public String getSportName() {
         return sportName;
     }
@@ -44,10 +47,5 @@ public class Sport {
 
     public void setSports(ArrayList<Sport> sports) {
         this.sports = sports;
-    }
-
-
-
-    public Sport(){ sports = new ArrayList<>();
     }
 }

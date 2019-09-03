@@ -45,8 +45,9 @@ public class SportReportRVAdapter extends CommonRVAdapter{
 
     @Override
     public int getItemCount() {
-        return 0;
+        return list.size();
     }
+
     private class ViewHolder extends RecyclerView.ViewHolder {
         TextView sportname;
         TextView sporttime;

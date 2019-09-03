@@ -20,9 +20,9 @@ public class DAOBlood {
 
     // 其它表格欄位名稱
     private static final String BLOODPRESSURE_COLUMN = "bloodPressure";
-    private static final String BLOODSUGER_COLUMN = "name";
-    private static final String WEIGHT_COLUMN = "midPrice";
-    private static final String CREATEDATE_COLUMN = "bigPrice";
+    private static final String BLOODSUGER_COLUMN = "bloodSugar";
+    private static final String WEIGHT_COLUMN = "weight";
+    private static final String CREATEDATE_COLUMN = "createDate";
 
     public static String CREATE_TABLE() {
         StringBuilder sb = new StringBuilder();

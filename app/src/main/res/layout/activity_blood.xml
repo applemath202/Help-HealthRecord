@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff"
+    tools:context=".activity.BloodActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#6B97D4"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:text="身體狀況管理"/>
+
+        <ImageView
+            android:id="@+id/iv_activity_blood_report"
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="20dp"
+            android:layout_alignParentEnd="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/report"
+            android:contentDescription="description"/>
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/et_activity_blood_blood_pressure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:textColor="#000"
+        tools:ignore="Autofill,LabelFor" />
+
+    <EditText
+        android:id="@+id/et_activity_blood_blood_sugar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:textColor="#000"
+        tools:ignore="Autofill,LabelFor" />
+
+    <EditText
+        android:id="@+id/et_activity_blood_weight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:textColor="#000"
+        tools:ignore="Autofill,LabelFor" />
+
+    <Button
+        android:id="@+id/bt_activity_blood_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SAVE"/>
+</LinearLayout>

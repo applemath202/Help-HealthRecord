@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         list = new ArrayList<>();
         MainGVItem g1 = new MainGVItem();
         g1.setName("身體狀況管理");
-        g1.setPicture(R.drawable.bloodpressure);
+        g1.setPicture(R.drawable.blood);
         list.add(g1);
 
         MainGVItem g2 = new MainGVItem();
@@ -65,14 +65,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         list.add(g6);
 
         MainGVItem g7 = new MainGVItem();
-        g7.setName("透析管理");
-        g7.setPicture(R.drawable.blood);
+        g7.setName("設定");
+        g7.setPicture(R.drawable.bloodpressure);
         list.add(g7);
 
         MainGVItem g8 = new MainGVItem();
         g8.setName("藥物管理");
         g8.setPicture(R.drawable.drug);
         list.add(g8);
+        MainGVItem g9 = new MainGVItem();
+        g9.setName("通知");
+        g9.setPicture(R.drawable.drug);
+        list.add(g9);
+
     }
 
     @Override
@@ -80,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         switch (position) {
             case 0:
                 Intent i1 = new Intent();
-                i1.setClass(MainActivity.this, BloodpressureActivity.class);
+                i1.setClass(MainActivity.this, BloodActivity.class);
                 startActivity(i1);
                 Toast.makeText(MainActivity.this, "身體狀況管理", Toast.LENGTH_SHORT).show();
                 break;
@@ -116,9 +121,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 break;
             case 6:
                 Intent i7 = new Intent();
-                i7.setClass(MainActivity.this, BloodActivity.class);
+                i7.setClass(MainActivity.this, SettingActivity.class);
                 startActivity(i7);
-                Toast.makeText(MainActivity.this, "透析管理", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "設定", Toast.LENGTH_SHORT).show();
                 break;
             case 7:
                 Intent i8 = new Intent();
@@ -126,6 +131,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 startActivity(i8);
                 Toast.makeText(MainActivity.this,
                         "藥物管理", Toast.LENGTH_SHORT).show();
+                break;
+            case 8:
+                Intent i9 = new Intent();
+                i9.setClass(MainActivity.this, Main2Activity.class);
+                startActivity(i9);
+                Toast.makeText(MainActivity.this,
+                        "通知管理", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

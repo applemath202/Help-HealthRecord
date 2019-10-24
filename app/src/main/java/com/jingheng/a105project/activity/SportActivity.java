@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.jingheng.a105project.R;
@@ -44,6 +47,27 @@ public class SportActivity extends AppCompatActivity implements View.OnClickList
         Date d = new Date();
         date = sdf.format(d);
         daoSport = new DAOSport(this);
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        //建立一個ArrayAdapter物件，並放置下拉選單的內容
+        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.myspinner, new String[]{"慢走", "室內腳踏車", "有氧舞蹈", "羽毛球", "排球","慢跑","爬樓梯"});
+        //設定下拉選單的樣式
+        adapter.setDropDownViewResource(R.layout.myspinner);
+        spinner.setAdapter(adapter);
+        //設定項目被選取之後的動作
+        spinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                Toast.makeText(SportActivity.this, "您選擇" + adapterView.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                Toast.makeText(SportActivity.this, "您沒有選擇任何項目", Toast.LENGTH_LONG).show();
+            }
+
+        });
     }
 
     @Override

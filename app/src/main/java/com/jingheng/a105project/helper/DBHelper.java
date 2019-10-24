@@ -5,13 +5,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.jingheng.a105project.sqlite.DAOBlood;
+import com.jingheng.a105project.sqlite.DAOFood;
 import com.jingheng.a105project.sqlite.DAOSport;
+import com.jingheng.a105project.sqlite.DAOWater;
 
 public class DBHelper extends SQLiteOpenHelper {
     // 資料庫名稱
     private static final String DATABASE_NAME = "mydata.db";
     // 資料庫版本，資料結構改變的時候要更改這個數字，通常是加一
-    private static final int VERSION = 11;
+    private static final int VERSION = 12;
     // 資料庫物件，固定的欄位變數
     private static SQLiteDatabase database;
 
@@ -33,6 +35,8 @@ public class DBHelper extends SQLiteOpenHelper {
         // 建立應用程式需要的表格
         db.execSQL(DAOBlood.CREATE_TABLE());
         db.execSQL(DAOSport.CREATE_TABLE());
+        db.execSQL(DAOFood.CREATE_TABLE());
+        db.execSQL(DAOWater.CREATE_TABLE());
     }
 
     @Override
@@ -40,6 +44,8 @@ public class DBHelper extends SQLiteOpenHelper {
         // 刪除原有的表格
         db.execSQL("DROP TABLE IF EXISTS " + DAOBlood.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + DAOSport.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + DAOFood.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + DAOWater.TABLE_NAME);
         // 呼叫onCreate建立新版的表格
         onCreate(db);
     }

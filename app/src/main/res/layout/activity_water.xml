@@ -1,9 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#d2e9ff"
     tools:context=".activity.WaterActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#6B97D4"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:text="水份管理"/>
+
+        <ImageView
+            android:id="@+id/iv_activity_water_report"
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="20dp"
+            android:layout_alignParentEnd="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/report"
+            android:contentDescription="description"/>
+    </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="今日建議飲水量"
+        android:layout_gravity="center"
+        android:textColor="#ff0000"
+        android:textSize="30sp">
+    </TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1650CC"
+        android:layout_gravity="center"
+        android:textColor="#ff0000"
+        android:textSize="30sp"
+        ></TextView>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="水份:"
+            android:textColor="#000"
+            android:textSize="18sp"/>
+        <EditText
+            android:id="@+id/et_activity_water_water"
+            android:layout_width="100sp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:inputType="number"
+            android:textColor="#000"
+            android:background="#FFF"
+            tools:ignore="Autofill,LabelFor" />
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="上一筆記錄為:100ml"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentLeft="true"
+            android:textColor="#000"
+            ></TextView>
+        <Button
+            android:layout_width="100sp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:text="輸入"
+            android:layout_alignParentRight="true"
+            ></Button>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="尿液:"
+            android:textColor="#000"
+            android:textSize="18sp"/>
+        <EditText
+            android:id="@+id/et_activity_water_pee"
+            android:layout_width="100sp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:inputType="number"
+            android:textColor="#000"
+            android:background="#FFF"
+            tools:ignore="Autofill,LabelFor" />
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="上一筆記錄為:95ml"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentLeft="true"
+            android:textColor="#000"
+            ></TextView>
+        <Button
+            android:layout_width="100sp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:text="輸入"
+            android:layout_alignParentRight="true"
+            ></Button>
+
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/bt_activity_water_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SAVE"/>
+
+    <TextView
+        android:id="@+id/tv_activity_water_neow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textColor="#000"/>
+</LinearLayout>

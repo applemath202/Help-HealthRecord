@@ -9,6 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".activity.Main2Activity"></activity>
+        <activity android:name=".activity.WaterReportActivity" />
+        <activity android:name=".activity.FoodReportActivity" />
         <activity android:name=".activity.SportReportActivity" />
         <activity android:name=".activity.BloodReportActivity" />
         <activity android:name=".activity.QAActivity" />
@@ -17,7 +20,7 @@
         <activity android:name=".activity.LineGraphActivity" />
         <activity android:name=".activity.FoodActivity" />
         <activity android:name=".activity.DrugActivity" />
-        <activity android:name=".activity.BloodpressureActivity" />
+        <activity android:name=".activity.SettingActivity" />
         <activity android:name=".activity.BloodActivity" />
         <activity android:name=".activity.MainActivity">
             <intent-filter>
@@ -26,6 +29,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".helper.PlayReceiver">
+            <intent-filter>
+                <action android:name="play_hskay" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

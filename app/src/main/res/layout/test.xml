@@ -1,6 +1,419 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:shrinkColumns="0"
+    android:background="#FFF"
+    >
 
-</LinearLayout>
+
+    <TextView
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:text="設定提醒"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:textSize="35sp" />
+
+
+    <TextView
+        android:id="@+id/wakeup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top"
+        android:text="起床時間"
+        android:textColor="#008577"
+        android:textSize = "20sp"
+        tools:ignore="HardcodedText" />
+    <TextView
+        android:id="@+id/hour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wakeup"
+        android:layout_toRightOf="@+id/spinner"
+        android:text="時"
+        android:textColor="#008577"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
+    <TextView
+        android:id="@+id/min"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wakeup"
+        android:layout_toRightOf="@+id/spinner2"
+        android:text="分"
+        android:textColor="#008577"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
+
+
+    <TextView
+        android:id="@+id/sleep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="睡眠時間"
+        android:textColor="@color/colorPrimary"
+        android:textSize = "20sp"
+        android:layout_below="@+id/spinner"
+        tools:ignore="HardcodedText,SmallSp" />
+    <TextView
+        android:id="@+id/hour1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sleep"
+        android:layout_toRightOf="@+id/spinner"
+        android:text="時"
+        android:textColor="#008577"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
+    <TextView
+        android:id="@+id/min1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sleep"
+        android:layout_toRightOf="@+id/spinner4"
+        android:text="分"
+        android:textColor="#008577"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
+
+
+    <TextView
+        android:id="@+id/breakfast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="早餐時間"
+        android:textColor="@color/colorPrimary"
+        android:textSize = "20sp"
+        android:layout_below="@+id/spinner3"
+        tools:ignore="HardcodedText,SmallSp" />
+    <TextView
+        android:id="@+id/hour2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/breakfast"
+        android:layout_toRightOf="@+id/spinner5"
+        android:text="時"
+        android:textColor="#008577"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
+    <TextView
+        android:id="@+id/min2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/breakfast"
+        android:layout_toRightOf="@+id/spinner6"
+        android:text="分"
+        android:textColor="#008577"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
+
+
+    <TextView
+        android:id="@+id/lunch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="午餐時間"
+        android:textColor="@color/colorPrimary"
+        android:textSize = "20sp"
+        android:layout_below="@+id/spinner5"
+        tools:ignore="HardcodedText,SmallSp" />
+    <TextView
+        android:id="@+id/hour3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lunch"
+        android:layout_toRightOf="@+id/spinner5"
+        android:text="時"
+        android:textColor="#008577"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
+    <TextView
+        android:id="@+id/min3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lunch"
+        android:layout_toRightOf="@+id/spinner6"
+        android:text="分"
+        android:textColor="#008577"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
+
+
+    <TextView
+        android:id="@+id/dinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="晚餐時間"
+        android:textColor="@color/colorPrimary"
+        android:textSize = "20sp"
+        android:layout_below="@+id/spinner7"
+        tools:ignore="HardcodedText,SmallSp" />
+    <TextView
+        android:id="@+id/hour4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dinner"
+        android:layout_toRightOf="@+id/spinner7"
+        android:text="時"
+        android:textColor="#008577"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
+    <TextView
+        android:id="@+id/min4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dinner"
+        android:layout_toRightOf="@+id/spinner8"
+        android:text="分"
+        android:textColor="#008577"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
+
+
+    <TextView
+        android:id="@+id/weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="重量時間"
+        android:textColor="@color/colorPrimary"
+        android:textSize = "20sp"
+        android:layout_below="@+id/spinner9"
+        tools:ignore="HardcodedText,SmallSp" />
+    <TextView
+        android:id="@+id/hour5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/weight"
+        android:layout_toRightOf="@+id/spinner9"
+        android:text="時"
+        android:textColor="#008577"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
+    <TextView
+        android:id="@+id/min5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/weight"
+        android:layout_toRightOf="@+id/spinner10"
+        android:text="分"
+        android:textColor="#008577"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/water"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="水分時間"
+        android:textColor="@color/colorPrimary"
+        android:textSize = "20sp"
+        android:layout_below="@+id/spinner11"
+        tools:ignore="HardcodedText,SmallSp" />
+    <TextView
+        android:id="@+id/hour6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/water"
+        android:layout_toRightOf="@+id/spinner11"
+        android:text="時"
+        android:textColor="#008577"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
+    <TextView
+        android:id="@+id/min6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/water"
+        android:layout_toRightOf="@+id/spinner12"
+        android:text="分"
+        android:textColor="#008577"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/motion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinner13"
+        android:layout_alignBottom="@+id/water"
+        android:layout_marginBottom="0dp"
+        android:text="運動時間"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText,SmallSp" />
+    <TextView
+        android:id="@+id/hour7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/motion"
+        android:layout_toRightOf="@+id/spinner13"
+        android:text="時"
+        android:textColor="#008577"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
+    <TextView
+        android:id="@+id/min7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/motion"
+        android:layout_toRightOf="@+id/spinner14"
+        android:text="分"
+        android:textColor="#008577"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/Dialysis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinner15"
+        android:text="透析時間"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText,SmallSp" />
+    <TextView
+        android:id="@+id/hour8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Dialysis"
+        android:layout_toRightOf="@+id/spinner15"
+        android:text="時"
+        android:textColor="#008577"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
+    <TextView
+        android:id="@+id/min8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Dialysis"
+        android:layout_toRightOf="@+id/spinner16"
+        android:text="分"
+        android:textColor="#008577"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
+
+
+    <Button
+        android:id="@+id/butt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/top"
+        android:text="增加其他提醒"
+        android:padding="10px"
+        tools:ignore="PxUsage" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="89dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wakeup" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="89dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wakeup"
+        android:layout_toRightOf="@+id/hour"/>
+
+    <Spinner
+        android:id="@+id/spinner3"
+        android:layout_width="89dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sleep" />
+    <Spinner
+        android:id="@+id/spinner4"
+        android:layout_width="89dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sleep"
+        android:layout_toRightOf="@+id/hour1"/>
+    <Spinner
+        android:id="@+id/spinner5"
+        android:layout_width="89dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/breakfast" />
+    <Spinner
+        android:id="@+id/spinner6"
+        android:layout_width="89dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/breakfast"
+        android:layout_toRightOf="@+id/hour2"/>
+    <Spinner
+        android:id="@+id/spinner7"
+        android:layout_width="89dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lunch" />
+    <Spinner
+        android:id="@+id/spinner8"
+        android:layout_width="89dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lunch"
+        android:layout_toRightOf="@+id/hour3"/>
+    <Spinner
+        android:id="@+id/spinner9"
+        android:layout_width="89dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dinner" />
+    <Spinner
+        android:id="@+id/spinner10"
+        android:layout_width="89dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dinner"
+        android:layout_toRightOf="@+id/hour4"/>
+    <Spinner
+        android:id="@+id/spinner11"
+        android:layout_width="89dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/weight" />
+    <Spinner
+        android:id="@+id/spinner12"
+        android:layout_width="89dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/weight"
+        android:layout_toRightOf="@+id/hour5"/>
+
+    <Spinner
+        android:id="@+id/spinner13"
+        android:layout_width="89dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/water"
+        android:layout_marginTop="1dp" />
+    <Spinner
+        android:id="@+id/spinner14"
+        android:layout_width="89dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/water"
+        android:layout_toRightOf="@+id/hour6"/>
+    <Spinner
+        android:id="@+id/spinner15"
+        android:layout_width="89dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/water" />
+    <Spinner
+        android:id="@+id/spinner16"
+        android:layout_width="89dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/water"
+        android:layout_toRightOf="@+id/hour7"/>
+    <Spinner
+        android:id="@+id/spinner17"
+        android:layout_width="89dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Dialysis" />
+    <Spinner
+        android:id="@+id/spinner18"
+        android:layout_width="89dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Dialysis"
+        android:layout_toRightOf="@+id/hour8"/>
+
+
+</RelativeLayout>

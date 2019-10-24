@@ -1,9 +1,349 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#d2e9ff"
     tools:context=".activity.FoodActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#6B97D4"
+        android:orientation="horizontal">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:text="飲食管理"/>
+
+        <ImageView
+            android:id="@+id/iv_activity_food_report"
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="20dp"
+            android:layout_alignParentEnd="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/report"
+            android:contentDescription="description"/>
+    </RelativeLayout>
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="主食:"
+        android:textSize="30sp"
+       android:textColor="#000"
+        ></TextView>
+
+
+
+       <Spinner
+          android:layout_marginLeft="10dp"
+           android:id="@+id/spinner"
+           android:layout_width="100dp"
+           android:layout_height="30sp"
+           android:gravity="center"
+           android:layoutMode="clipBounds"
+           android:background="#FFF">
+
+       </Spinner>
+       <EditText
+           android:id="@+id/staple_food"
+           android:layout_height="30sp"
+           android:layout_width="100dp"
+           android:layout_marginLeft="10dp"
+           android:inputType="number"
+           android:textColor="#000"
+           android:text="0"
+           android:gravity="center"
+           android:background="#FFF"
+           />
+       <TextView
+           android:layout_marginLeft="10dp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="份"
+           android:textSize="30sp"
+           android:textColor="#000"
+           ></TextView>
+
+
+       ></LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="饅頭一顆、飯一碗、麵一碗、地瓜一顆 以上為一份"
+        android:textColor="#000"
+        android:layout_marginTop="10dp">
+
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="肉類:"
+            android:textSize="30sp"
+            android:textColor="#000"
+            ></TextView>
+
+        <Spinner
+            android:layout_marginLeft="10dp"
+            android:id="@+id/spinner2"
+            android:layout_width="100dp"
+            android:layout_height="30sp"
+            android:gravity="center"
+            android:layoutMode="clipBounds"
+            android:background="#FFF">
+
+        </Spinner>
+        <EditText
+            android:id="@+id/meat_food"
+            android:layout_height="30sp"
+            android:layout_width="100dp"
+            android:layout_marginLeft="10dp"
+            android:inputType="number"
+            android:textColor="#000"
+            android:text="0"
+            android:gravity="center"
+            android:background="#FFF"
+            />
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="份"
+            android:textSize="30sp"
+            android:textColor="#000"
+            ></TextView>
+
+
+        ></LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="肉類一份為100公克"
+        android:textColor="#000"
+        android:layout_marginTop="10dp">
+
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="蔬菜:"
+            android:textSize="30sp"
+            android:textColor="#000"
+            ></TextView>
+
+        <Spinner
+            android:layout_marginLeft="10dp"
+            android:id="@+id/spinner3"
+            android:layout_width="100dp"
+            android:layout_height="30sp"
+            android:gravity="center"
+            android:layoutMode="clipBounds"
+            android:background="#FFF">
+
+        </Spinner>
+        <EditText
+            android:id="@+id/vegetable_food"
+            android:layout_height="30sp"
+            android:layout_width="100dp"
+            android:layout_marginLeft="10dp"
+            android:inputType="number"
+            android:textColor="#000"
+            android:text="0"
+            android:gravity="center"
+            android:background="#FFF"
+            />
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="份"
+            android:textSize="30sp"
+            android:textColor="#000"
+            ></TextView>
+
+
+        ></LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="蔬菜一份為100公克"
+        android:textColor="#000"
+        android:layout_marginTop="10dp">
+
+    </TextView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="水果:"
+            android:textSize="30sp"
+            android:textColor="#000"
+            ></TextView>
+
+        <Spinner
+            android:layout_marginLeft="10dp"
+            android:id="@+id/spinner4"
+            android:layout_width="100dp"
+            android:layout_height="30sp"
+            android:gravity="center"
+            android:layoutMode="clipBounds"
+            android:background="#FFF">
+
+        </Spinner>
+        <EditText
+            android:id="@+id/fruit_food"
+            android:layout_height="30sp"
+            android:layout_width="100dp"
+            android:layout_marginLeft="10dp"
+            android:inputType="number"
+            android:textColor="#000"
+            android:text="0"
+            android:gravity="center"
+            android:background="#FFF"
+            />
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="份"
+            android:textSize="30sp"
+            android:textColor="#000"
+            ></TextView>
+
+
+        ></LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="水果一份為一顆"
+        android:textColor="#000"
+        android:layout_marginTop="10dp">
+
+    </TextView>
+
+
+
+
+
+
+
+
+
+    <EditText
+        android:id="@+id/et_activity_food_food"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:textColor="#000"
+        tools:ignore="Autofill,LabelFor" />
+
+    <Button
+        android:id="@+id/bt_activity_food_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SAVE"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="飲食建議"
+        android:layout_gravity="center"
+        android:textColor="#ff0000"
+        android:layout_marginTop="10dp">
+    </TextView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50sp"
+            android:layout_gravity="left"
+            android:layout_marginRight="10dp"
+            android:text="主食"
+            android:textColor="#000"
+            android:textSize="30sp"
+            android:background="#FFF">
+
+        </Button>
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50sp"
+            android:layout_gravity="right"
+
+            android:text="肉類"
+            android:textColor="#000"
+            android:textSize="30sp"
+            android:background="#FFF">
+
+        </Button>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50sp"
+            android:layout_marginRight="10dp"
+            android:text="蔬菜"
+            android:textColor="#000"
+            android:textSize="30sp"
+            android:background="#FFF">
+
+        </Button>
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50sp"
+            android:layout_gravity="right"
+            android:text="水果"
+            android:textColor="#000"
+            android:textSize="30sp"
+            android:background="#FFF">
+
+        </Button>
+
+    </LinearLayout>
+</LinearLayout>

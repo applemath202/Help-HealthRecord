@@ -18,12 +18,12 @@ import com.jingheng.a105project.sqlite.DAOWater;
 
 import java.util.ArrayList;
 
-public class WaterReport extends AppCompatActivity {
+public class WaterReportActivity extends AppCompatActivity {
+
     private RecyclerView rv;
     private DAOWater daoWater;
 
     private ArrayList<Water> list;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class WaterReport extends AppCompatActivity {
         Log.d("dao", "" + list);
 
         // ui
-        rv = findViewById(R.id.rv_food_report);
+        rv = findViewById(R.id.rv_water_report);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(new WaterReportRVAdapter(this, list));
     }

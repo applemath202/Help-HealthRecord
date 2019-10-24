@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.jingheng.a105project.R;
 
-public class BloodpressureActivity extends AppCompatActivity {
+public class SettingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bloodpressure);
+        setContentView(R.layout.activity_setting);
     }
 }

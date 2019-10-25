@@ -1,34 +1,24 @@
 package com.jingheng.a105project.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
 
 import android.app.AlarmManager;
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.RemoteViews;
-import android.widget.Switch;
 
 import com.jingheng.a105project.R;
 import com.jingheng.a105project.helper.PlayReceiver;
 
 import java.util.Calendar;
 
-public class Main2Activity extends AppCompatActivity {
+public class AlarmActivity extends AppCompatActivity {
 
     private NotificationManager manager;
 
@@ -40,7 +30,7 @@ public class Main2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_alarm);
 
         // 取得NotificationManager物件
         manager = (NotificationManager)
@@ -63,10 +53,6 @@ public class Main2Activity extends AppCompatActivity {
         am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pi);
         Log.d("testAlarm", "click");
     }
-
-
-
-
 
     // 建立與設定Notify channel
     // 加入裝置版本的判斷，應用程式就不用把最低版本設定為API level 26

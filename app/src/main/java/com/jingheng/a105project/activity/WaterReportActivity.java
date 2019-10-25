@@ -18,7 +18,7 @@ import com.jingheng.a105project.sqlite.DAOWater;
 
 import java.util.ArrayList;
 
-public class WaterReportActivity extends AppCompatActivity {
+public class WaterReportActivity extends CommonActivity {
 
     private RecyclerView rv;
     private DAOWater daoWater;
@@ -29,6 +29,10 @@ public class WaterReportActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_water_report);
+        addWaterButton(R.id.water_report_toolbar);
+        assert getSupportActionBar() != null;
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         list = new ArrayList<>();
         daoWater = new DAOWater(this);
         if (daoWater.getCount() == 0) {

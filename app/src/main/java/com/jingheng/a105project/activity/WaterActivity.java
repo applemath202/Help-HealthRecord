@@ -2,18 +2,24 @@ package com.jingheng.a105project.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jingheng.a105project.R;
 import com.jingheng.a105project.model.Food;
 import com.jingheng.a105project.model.Water;
+import com.jingheng.a105project.model.Weight;
 import com.jingheng.a105project.sqlite.DAOFood;
 import com.jingheng.a105project.sqlite.DAOWater;
+import com.jingheng.a105project.sqlite.DAOWeight;
 
 import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
@@ -21,66 +27,88 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-public class WaterActivity extends AppCompatActivity implements View.OnClickListener{
+public class WaterActivity extends CommonActivity implements View.OnClickListener {
 
     // ui
-    private TextView tv_neow;
-    private EditText et_pee;
-
-    //data
-    private String date;
-    private ArrayList<Water> list;
-    private DAOWater daoWater;
+    private TextView tv_water_water;
 
     @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_water);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_water);
 
         // ui
-        tv_neow = findViewById(R.id.tv_activity_water_neow);
-        et_pee = findViewById(R.id.et_activity_water_pee);
-        findViewById(R.id.bt_activity_water_save).setOnClickListener(this);
-        findViewById(R.id.iv_activity_water_report).setOnClickListener(this);
+        tv_water_water = findViewById(R.id.tv_water_water);
+        tv_water_water.setOnClickListener(this);
+        findViewById(R.id.water_finish).setOnClickListener(this);
+        findViewById(R.id.rv_water_report).setOnClickListener(this);
 
-        // data
-        list = new ArrayList<>();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.TAIWAN);
-        Date d = new Date();
-        date = sdf.format(d);
-        daoWater = new DAOWater(this);
+        addMainButton(R.id.water_toolbar);
+        assert getSupportActionBar() != null;
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+    }
+
+    private void showScrollPicker(final String kind) {
+        final Dialog dialog = new Dialog(this);
+        //dialog.setTitle("Title");
+        dialog.setContentView(R.layout.dialog_picker);
+        Button dp_bt_cancel = dialog.findViewById(R.id.dp_bt_cancel);
+        Button dp_bt_set = dialog.findViewById(R.id.dp_bt_set);
+        final NumberPicker numberPicker = dialog.findViewById(R.id.dp_np);
+
+        if (kind.equals("water")) {
+            numberPicker.setMinValue(30);
+            numberPicker.setMaxValue(500);
+            numberPicker.setValue(150); // 設定預設位置
+        }
+        numberPicker.setWrapSelectorWheel(false); // 是否循環顯示
+        numberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS); // 不可編輯
+
+        dp_bt_set.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (kind.equals("water")) {
+                    tv_water_water.setText(String.valueOf(numberPicker.getValue()));
+                }
+                dialog.dismiss();
+            }
+        });
+        dp_bt_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.bt_activity_water_save:
-                if(et_pee.getText().toString().isEmpty()){
-                    Toast.makeText(this, "不能是空的", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                Water water = new Water(
-                        et_pee.getText().toString(),
-                        date
-                );
-                daoWater.insert(water);
-                int neow = 0;
-                list = daoWater.getAll();
-                for(int i=0;i<list.size();i++){
-                    if(list.get(i).getCreateDate().substring(0,10).equals(date.substring(0,10))){
-                        neow += Integer.valueOf(list.get(i).getPee());
-                    }
-                }
-                neow=neow+500;
-                tv_neow.setText(String.valueOf(neow));
-                et_pee.setText("");
-                Toast.makeText(this, "儲存成功", Toast.LENGTH_SHORT).show();
-                break;
-
-            case R.id.iv_activity_water_report:
+            case R.id.rv_water_report:
                 startActivity(new Intent(this, WaterReportActivity.class));
                 break;
+            case R.id.tv_water_water:
+                showScrollPicker("water");
+                break;
+
+            case R.id.water_finish:
+                String waters = tv_water_water.getText().toString();
+
+                if (waters.isEmpty()) {
+                    Toast.makeText(this, "不能是空的", Toast.LENGTH_SHORT).show();
+                } else {
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.TAIWAN);
+                    Date d = new Date();
+                    String date = sdf.format(d);
+                    DAOWater daoWater = new DAOWater(this);
+                    Water water = new Water(waters, date);
+                    daoWater.insert(water);
+                    startActivity(new Intent(this, MainActivity.class));
+                }
+                break;
         }
+
 
     }
 }

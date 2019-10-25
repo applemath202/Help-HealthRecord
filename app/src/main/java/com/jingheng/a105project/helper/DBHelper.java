@@ -4,10 +4,14 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.jingheng.a105project.sqlite.DAOAlarm;
 import com.jingheng.a105project.sqlite.DAOBlood;
+import com.jingheng.a105project.sqlite.DAOBloodSugar;
 import com.jingheng.a105project.sqlite.DAOFood;
+import com.jingheng.a105project.sqlite.DAOPee;
 import com.jingheng.a105project.sqlite.DAOSport;
 import com.jingheng.a105project.sqlite.DAOWater;
+import com.jingheng.a105project.sqlite.DAOWeight;
 
 public class DBHelper extends SQLiteOpenHelper {
     // 資料庫名稱
@@ -37,6 +41,10 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(DAOSport.CREATE_TABLE());
         db.execSQL(DAOFood.CREATE_TABLE());
         db.execSQL(DAOWater.CREATE_TABLE());
+        db.execSQL(DAOAlarm.CREATE_TABLE());
+        db.execSQL(DAOBloodSugar.CREATE_TABLE());
+        db.execSQL(DAOWeight.CREATE_TABLE());
+        db.execSQL(DAOPee.CREATE_TABLE());
     }
 
     @Override
@@ -46,6 +54,11 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + DAOSport.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + DAOFood.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + DAOWater.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + DAOAlarm.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + DAOBloodSugar.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + DAOWeight.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + DAOPee.TABLE_NAME);
+
         // 呼叫onCreate建立新版的表格
         onCreate(db);
     }

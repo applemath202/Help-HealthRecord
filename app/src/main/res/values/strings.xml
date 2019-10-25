@@ -1,4 +1,124 @@
 <resources>
     <string name="app_name">105Project</string>
-    <string name="big_text">The notification system allows your app to keep the user informed about events, such as new chat messages or a calendar event. Think of notifications as a news channel that alerts the user to important events as they happen or a log that chronicles events while the user is not paying attention.</string>
+
+    <string name="name">使用者名稱</string>
+
+    <!--user-->
+    <string name="user_id">帳號</string>
+    <string name="password">密碼</string>
+    <string name="preset_password">WhatToEat</string>
+    <string name="email">信箱</string>
+    <string name="old_password">舊密碼</string>
+    <string name="new_password">新密碼</string>
+    <string name="confirm_password">確認密碼</string>
+    <string name="verification">驗證</string>
+    <string name="verification_code">驗證碼</string>
+    <string name="verification_code_format_error">驗證碼格式不符</string>
+    <string name="reset_password">重設密碼</string>
+    <string name="home_page">HOME</string>
+
+    <!--tab-->
+    <string name="food_list">美食清單</string>
+    <string name="near_road_query">附近餐廳</string>
+    <string name="more">更多</string>
+    <string name="personal_information">個人資料</string>
+
+    <!--personal_information-->
+    <string name="role">使用者身分：</string>
+    <string name="made_by">WhatToEat made by Jingheng</string>
+    <string name="renew">開通店家權限</string>
+    <string name="confirm_renew">確定要花$$開通此權限？</string>
+    <string name="food_name">店家名稱</string>
+
+    <!--road_query-->
+    <string name="address">地址</string>
+    <string name="tv_address">地址: %1$s</string>
+    <string name="comment">描述</string>
+    <string name="distance">距離</string>
+    <string name="meter">公尺</string>
+    <string name="tv_km">%.1f公里</string>
+    <string name="time">營業時間</string>
+    <string name="position">目前位置</string>
+    <string name="location">所在位置</string>
+    <string name="latitude">緯度</string>
+    <string name="longitude">經度</string>
+    <string name="classify">類別</string>
+    <string name="classification">各式料理</string>
+    <string name="use_position">使用目前位置</string>
+    <string name="discount_num">折扣</string>
+    <string name="deadline">到期日</string>
+    <string name="date">0000/00/00</string>
+    <string name="collection">收藏</string>
+    <string name="google_maps_key">AIzaSyBEVd6d-K0weO2TBEmMvpG8B6dTiFfLuFI</string>
+
+    <!--google_api-->
+    <string name="google_direction_api">AIzaSyCBJhYUqzCshRGYSo7zGPK3ifmS47x9bNk</string>
+    <string name="google_elevation_api">AIzaSyDG0nxDM4KgihDH3XGL_IV2TbVlnSgqCO8</string>
+    <string name="google_places_api">AIzaSyBDabvPQ1GgRD0Uir_PLH85IoRJwvb1KwA</string>
+    <string name="title_update_location">記事儲存的位置</string>
+
+    <!--google_maps-->
+    <string name="message_update_location">更新或清除儲存的位置資訊?</string>
+    <string name="update">更新</string>
+    <string name="clear">清除</string>
+    <string name="title_current_location">目前位置</string>
+    <string name="message_current_location">是否儲存目前位置?</string>
+    <string name="google_play_service_missing">裝置沒有安裝Google Play服務</string>
+    <string name="login">登入</string>
+
+    <!--button-->
+    <string name="google_login">Google登入</string>
+    <string name="bt_sign_out">登出</string>
+    <string name="sign_up">註冊</string>
+    <string name="forget_password">忘記密碼</string>
+    <string name="bt_confirm">確認</string>
+    <string name="bt_profile">個人資料</string>
+    <string name="bt_position">查看目前位置</string>
+    <string name="bt_food_list">美食清單</string>
+    <string name="bt_add_road_query">新增店家</string>
+    <string name="bt_update_password">修改密碼</string>
+    <string name="bt_reset_password">重設密碼</string>
+    <string name="bt_change_picture">更改頭貼</string>
+    <string name="bt_rotate">旋轉</string>
+    <string name="bt_back">返回</string>
+    <string name="bt_search">搜尋</string>
+    <string name="bt_add_favorite">加入最愛</string>
+    <string name="bt_information">餐廳資訊</string>
+    <string name="allow_word">0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM</string>
+
+    <!--editText-->
+    <string name="loading">讀取中</string>
+
+    <!--dialog-->
+    <string name="success">成功</string>
+    <string name="fail">失敗</string>
+    <string name="empty">空的</string>
+    <string name="confirm">確定</string>
+
+    <!--alert-->
+    <string name="cancel">取消</string>
+    <string name="connection_error">連線錯誤</string>
+
+    <!--array_picture-->
+    <string name="empty_error">不能是空的</string>
+
+    <!-- error -->
+    <string name="confirm_password_error">確認密碼錯誤</string>
+    <string name="credit_card_error">信用卡號錯誤</string>
+    <string name="code_error">安全碼錯誤</string>
+    <string name="server_error_null">伺服器回傳錯誤(null)</string>
+    <string name="login_error">使用者名稱或密碼錯誤</string>
+    <string name="email_error">信箱格式不符</string>
+    <string name="modify_data_error">修改資料失敗</string>
+    <string name="modify_password_error">修改密碼失敗</string>
+    <string name="permission_denied">權限不足</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="position_warning">需要填入店家位置</string>
+    <string name="picture_warning">未選擇圖片</string>
+    <string name="title_activity_user_navigation_drawer">UserNavigationDrawerActivity</string>
+    <string name="description">description</string>
+    <string-array name="sex">
+        <item>男</item>
+        <item>女</item>
+    </string-array>
 </resources>

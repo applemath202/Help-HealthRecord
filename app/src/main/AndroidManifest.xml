@@ -8,8 +8,18 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".activity.Main2Activity"></activity>
+        android:theme="@style/AppTheme">
+        <activity android:name=".activity.EditWaterActivity"></activity>
+        <activity android:name=".activity.EditWeightActivity" />
+        <activity android:name=".activity.WeightReportActivity" />
+        <activity android:name=".activity.EditBloodSugarActvity" />
+        <activity android:name=".activity.BloodSugarReportActivity" />
+        <activity android:name=".activity.EditBloodActivity" />
+        <activity android:name=".activity.PeeActivity" />
+        <activity android:name=".activity.WeightActivity" />
+        <activity android:name=".activity.BloodSugarActivity" />
+        <activity android:name=".activity.SettingActivity" />
+        <activity android:name=".activity.AlarmActivity" />
         <activity android:name=".activity.WaterReportActivity" />
         <activity android:name=".activity.FoodReportActivity" />
         <activity android:name=".activity.SportReportActivity" />
@@ -20,9 +30,9 @@
         <activity android:name=".activity.LineGraphActivity" />
         <activity android:name=".activity.FoodActivity" />
         <activity android:name=".activity.DrugActivity" />
-        <activity android:name=".activity.SettingActivity" />
+        <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.BloodActivity" />
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.PermissionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

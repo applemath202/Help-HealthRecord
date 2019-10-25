@@ -13,6 +13,7 @@ import com.jingheng.a105project.model.Water;
 import java.util.ArrayList;
 
 public class DAOWater {
+
     // 表格名稱
     public static final String TABLE_NAME = "Water";
 
@@ -20,14 +21,14 @@ public class DAOWater {
     private static final String KEY_ID = "_id";
 
     // 其它表格欄位名稱
-    private static final String PEE_COLUMN = "pee";
+    private static final String WATER_COLUMN = "water";
     private static final String CREATEDATE_COLUMN = "createDate";
 
     public static String CREATE_TABLE() {
         StringBuilder sb = new StringBuilder();
         sb.append("Create Table " + TABLE_NAME + " ( ");
         sb.append(KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , ");
-        sb.append(PEE_COLUMN + " TEXT NOT NULL, ");
+        sb.append(WATER_COLUMN + " TEXT NOT NULL, ");
         sb.append(CREATEDATE_COLUMN + " TEXT NOT NULL) ");
         return sb.toString();
     }
@@ -49,11 +50,28 @@ public class DAOWater {
 
         ContentValues cv = new ContentValues();
 
-        cv.put(PEE_COLUMN, item.getPee());
+        cv.put(WATER_COLUMN, item.getWater());
         cv.put(CREATEDATE_COLUMN, item.getCreateDate());
 
         long id = db.insert(TABLE_NAME, null, cv);
         return id > 0;
+    }
+
+    public boolean update(Water item) {
+        ContentValues cv = new ContentValues();
+
+        cv.put(WATER_COLUMN, item.getWater());
+        cv.put(CREATEDATE_COLUMN, item.getCreateDate());
+
+        String where = KEY_ID + "=" + item.getWaterId();
+
+        return db.update(TABLE_NAME, cv, where, null) > 0;
+    }
+
+    public boolean delete(int id) {
+        String where = KEY_ID + "=" + id;
+
+        return db.delete(TABLE_NAME, where, null) > 0;
     }
 
     // 讀取所有記事資料
@@ -73,7 +91,8 @@ public class DAOWater {
         // 準備回傳結果用的物件
         Water result = new Water();
 
-        result.setPee(cursor.getString(1));
+        result.setWaterId((int)cursor.getLong(0));
+        result.setWater(cursor.getString(1));
         result.setCreateDate(cursor.getString(2));
 
         // 回傳結果

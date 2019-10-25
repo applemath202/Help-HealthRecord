@@ -32,8 +32,6 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
 
@@ -92,7 +90,7 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
 
         Spinner spinner3 = (Spinner) findViewById(R.id.spinner3);
         //建立一個ArrayAdapter物件，並放置下拉選單的內容
-        ArrayAdapter adapter3 = new ArrayAdapter(this,R.layout.myspinner, new String[]{"無", "地瓜葉", "高麗菜", "菠菜", "花椰菜", "芹菜", "大陸妹", "大白菜"});
+        ArrayAdapter adapter3 = new ArrayAdapter(this, R.layout.myspinner, new String[]{"無", "地瓜葉", "高麗菜", "菠菜", "花椰菜", "芹菜", "大陸妹", "大白菜"});
 //        //設定下拉選單的樣式
 //        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner3.setAdapter(adapter3);
@@ -113,7 +111,7 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
 
         Spinner spinner4 = (Spinner) findViewById(R.id.spinner4);
         //建立一個ArrayAdapter物件，並放置下拉選單的內容
-        ArrayAdapter adapter4 = new ArrayAdapter(this,R.layout.myspinner, new String[]{"無", "蘋果", "水梨", "香蕉", "芭樂", "桃子"});
+        ArrayAdapter adapter4 = new ArrayAdapter(this, R.layout.myspinner, new String[]{"無", "蘋果", "水梨", "香蕉", "芭樂", "桃子"});
 //        //設定下拉選單的樣式
 //        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner4.setAdapter(adapter4);

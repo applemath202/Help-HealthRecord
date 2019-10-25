@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:background="#d2e9ff"
     tools:context=".activity.FoodActivity">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"

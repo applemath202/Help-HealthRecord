@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,304 +7,349 @@
     android:orientation="vertical"
     tools:context=".activity.SettingActivity">
 
-      <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#d2e9ff">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="#6B97D4"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:gravity="center_vertical"
-                android:layout_gravity="center"
-                android:textSize="20sp"
-                android:text="設定"/>
-        </RelativeLayout>
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#d2e9ff"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="性別:"
-                android:textSize="25sp"
-                android:textColor="#000"
-                ></TextView>
-                <EditText
-                    android:id="@+id/settint_ed_sex"
-                    android:layout_width="30sp"
+                android:theme="@style/AppTheme.AppBarOverlay">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/setting_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/colorPrimary"
+                    app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:maxLines="1"
+                        android:textColor="#FFF"
+                        android:text="設定"
+                        android:textSize="20sp" />
+
+                    <ImageView
+                        android:id="@+id/setting_person"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_person"
+                        android:layout_marginEnd="10dp"
+                        android:layout_gravity="end"
+                        android:scaleType="centerInside"
+                        android:contentDescription="@string/description"/>
+                </androidx.appcompat.widget.Toolbar>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_setting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
-                    android:background="#FFF"
-                    >
-                </EditText>
+                    android:layout_marginEnd="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:padding="10dp"
+                        android:text="性別"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorPrimary"/>
+
+                    <TextView
+                        android:id="@+id/setting_tv_sex"
+                        style="@style/InputEditText"
+                        android:maxLength="200"
+                        android:singleLine="true"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:padding="10dp"
+                        android:text="體重"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorPrimary"/>
+
+                    <TextView
+                        android:id="@+id/setting_tv_weight"
+                        style="@style/InputEditText"
+                        android:maxLength="200"
+                        android:singleLine="true"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:padding="10dp"
+                        android:text="身高"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorPrimary"/>
+
+                    <TextView
+                        android:id="@+id/setting_tv_height"
+                        style="@style/InputEditText"
+                        android:maxLength="200"
+                        android:singleLine="true"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:padding="10dp"
+                        android:text="生日"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorPrimary"/>
+
+                    <TextView
+                        android:id="@+id/setting_tv_birth"
+                        style="@style/InputEditText"
+                        android:maxLength="200"
+                        android:singleLine="true"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_alarm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:padding="10dp"
+                        android:text="預估起床時間"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorPrimary"/>
+
+                    <TextView
+                        android:id="@+id/setting_wakeup_plus"
+                        style="@style/InputEditText"
+                        android:maxLength="200"
+                        android:singleLine="true"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:padding="10dp"
+                        android:text="預估睡眠時間"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorPrimary"/>
+
+                    <TextView
+                        android:id="@+id/setting_sleep_plus"
+                        style="@style/InputEditText"
+                        android:maxLength="200"
+                        android:singleLine="true"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:padding="10dp"
+                        android:text="預估早餐時間"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorPrimary"/>
+
+                    <TextView
+                        android:id="@+id/setting_breakfast_plus"
+                        style="@style/InputEditText"
+                        android:maxLength="200"
+                        android:singleLine="true"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:padding="10dp"
+                        android:text="預估午餐時間"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorPrimary"/>
+
+                    <TextView
+                        android:id="@+id/setting_lunch_plus"
+                        style="@style/InputEditText"
+                        android:maxLength="200"
+                        android:singleLine="true"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:padding="10dp"
+                        android:text="預估晚餐時間"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorPrimary"/>
+
+                    <TextView
+                        android:id="@+id/setting_dinner_plus"
+                        style="@style/InputEditText"
+                        android:maxLength="200"
+                        android:singleLine="true"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:padding="10dp"
+                        android:text="預估運動時間"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorPrimary"/>
+
+                    <TextView
+                        android:id="@+id/setting_sport_plus"
+                        style="@style/InputEditText"
+                        android:maxLength="200"
+                        android:singleLine="true"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:padding="10dp"
+                        android:text="預估量體重時間"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorPrimary"/>
+
+                    <TextView
+                        android:id="@+id/setting_weight_plus"
+                        style="@style/InputEditText"
+                        android:maxLength="200"
+                        android:singleLine="true"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+            </LinearLayout>
+
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/setting_finish"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="身高:"
-                android:textSize="25sp"
-                android:textColor="#000"
-                ></TextView>
-            <EditText
-                android:id="@+id/settint_ed_height"
-                android:layout_width="30sp"
-                android:layout_height="wrap_content"
-                android:textColor="#000"
-                android:background="#FFF"
-                ></EditText>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="體重:"
-                android:textSize="25sp"
-                android:textColor="#000"
-                ></TextView>
-            <EditText
-                android:id="@+id/settint_ed_weight"
-                android:layout_width="30sp"
-                android:layout_height="wrap_content"
-                android:textColor="#000"
-                android:background="#FFF"
-                ></EditText>
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:padding="15dp"
+                android:text="完成"
+                android:background="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textColor="#fff"/>
         </LinearLayout>
-          <LinearLayout
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:orientation="horizontal">
-              <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="生日:"
-              android:textSize="25sp"
-              android:textColor="#000"
-              ></TextView>
-              <EditText
-                  android:id="@+id/setting_ed_birthyear"
-                  android:layout_width="25sp"
-                  android:layout_height="wrap_content"
-                  android:inputType="number"
-                  android:textColor="#000"
-                  android:background="#FFF"
-                  >
-              </EditText>
-              <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="年"
-                  android:textSize="25sp"
-                  android:textColor="#000"
-                  ></TextView>
-              <EditText
-                  android:id="@+id/settint_ed_birthmonth"
-                  android:layout_width="25sp"
-                  android:layout_height="wrap_content"
-                  android:inputType="number"
-                  android:textColor="#000"
-                  android:background="#FFF"
-                  ></EditText>
-              <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="月"
-                  android:textSize="25sp"
-                  android:textColor="#000"
-                  ></TextView>
-              <EditText
-                  android:id="@+id/settint_ed_birthday"
-                  android:layout_width="25sp"
-                  android:layout_height="wrap_content"
-                  android:inputType="number"
-                  android:textColor="#000"
-                  android:background="#FFF"
-                  >
-              </EditText>
-              <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="日"
-                  android:textSize="25sp"
-                  android:textColor="#000"
-                  ></TextView>
-
-          </LinearLayout>
-          <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="請輸入以下時間"
-              android:layout_marginTop="15dp"
-              android:layout_marginBottom="15dp"
-              android:textSize="25sp"
-              android:textColor="#000"
-              android:layout_gravity="center"></TextView>
-          <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="horizontal"
-              android:layout_marginBottom="15dp"
-              >
-              <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="預估起床時間"
-                  android:textSize="25sp"
-                  android:textColor="#000"></TextView>
-              <ImageView
-                  android:id="@+id/iv_activity_setting_wakeup_plus"
-                  android:layout_width="25dp"
-                  android:layout_height="match_parent"
-                  android:layout_marginStart="20dp"
-                  android:layout_alignParentEnd="true"
-                  android:scaleType="centerInside"
-                  android:src="@drawable/plus"
-                  android:contentDescription="description"/>
-          </LinearLayout>
-          <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="horizontal"
-              android:layout_marginBottom="15dp"
-              >
-              <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="預估睡眠時間"
-                  android:textSize="25sp"
-                  android:textColor="#000"></TextView>
-              <ImageView
-                  android:id="@+id/iv_activity_setting_sleep_plus"
-                  android:layout_width="25dp"
-                  android:layout_height="match_parent"
-                  android:layout_marginStart="20dp"
-                  android:layout_alignParentEnd="true"
-                  android:scaleType="centerInside"
-                  android:src="@drawable/plus"
-                  android:contentDescription="description"/>
-          </LinearLayout>
-          <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="horizontal"
-              android:layout_marginBottom="15dp"
-              >
-              <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="預估早餐時間"
-                  android:textSize="25sp"
-                  android:textColor="#000"></TextView>
-              <ImageView
-                  android:id="@+id/iv_activity_setting_breakfast_plus"
-                  android:layout_width="25dp"
-                  android:layout_height="match_parent"
-                  android:layout_marginStart="20dp"
-                  android:layout_alignParentEnd="true"
-                  android:scaleType="centerInside"
-                  android:src="@drawable/plus"
-                  android:contentDescription="description"/>
-          </LinearLayout>
-
-
-
-          <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="horizontal"
-              android:layout_marginBottom="15dp"
-              >
-              <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="預估午餐時間"
-                  android:textSize="25sp"
-                  android:textColor="#000"></TextView>
-              <ImageView
-                  android:id="@+id/iv_activity_setting_lunch_plus"
-                  android:layout_width="25dp"
-                  android:layout_height="match_parent"
-                  android:layout_marginStart="20dp"
-                  android:layout_alignParentEnd="true"
-                  android:scaleType="centerInside"
-                  android:src="@drawable/plus"
-                  android:contentDescription="description"/>
-
-          </LinearLayout>
-          <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="horizontal"
-              android:layout_marginBottom="15dp"
-              >
-              <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="預估晚餐時間"
-                  android:textSize="25sp"
-                  android:textColor="#000"></TextView>
-              <ImageView
-                  android:id="@+id/iv_activity_setting_dinner_plus"
-                  android:layout_width="25dp"
-                  android:layout_height="match_parent"
-                  android:layout_marginStart="20dp"
-                  android:layout_alignParentEnd="true"
-                  android:scaleType="centerInside"
-                  android:src="@drawable/plus"
-                  android:contentDescription="description"/>
-          </LinearLayout>
-          <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="horizontal"
-              android:layout_marginBottom="15dp"
-              >
-              <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="預估運動時間"
-                  android:textSize="25sp"
-                  android:textColor="#000"></TextView>
-              <ImageView
-                  android:id="@+id/iv_activity_setting_sport_plus"
-                  android:layout_width="25dp"
-                  android:layout_height="match_parent"
-                  android:layout_marginStart="20dp"
-                  android:layout_alignParentEnd="true"
-                  android:scaleType="centerInside"
-                  android:src="@drawable/plus"
-                  android:contentDescription="description"/>
-          </LinearLayout>
-          <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="horizontal"
-              android:layout_marginBottom="15dp"
-              >
-              <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="預估量體重時間"
-                  android:textSize="25sp"
-                  android:textColor="#000"></TextView>
-              <ImageView
-                  android:id="@+id/iv_activity_setting_weight_plus"
-                  android:layout_width="25dp"
-                  android:layout_height="match_parent"
-                  android:layout_marginStart="20dp"
-                  android:layout_alignParentEnd="true"
-                  android:scaleType="centerInside"
-                  android:src="@drawable/plus"
-                  android:contentDescription="description"/>
-          </LinearLayout>
-
-          </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

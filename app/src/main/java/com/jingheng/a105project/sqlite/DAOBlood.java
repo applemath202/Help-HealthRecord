@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.jingheng.a105project.helper.DBHelper;
 import com.jingheng.a105project.model.Blood;
@@ -20,8 +21,7 @@ public class DAOBlood {
 
     // 其它表格欄位名稱
     private static final String BLOODPRESSURE_COLUMN = "bloodPressure";
-    private static final String BLOODSUGER_COLUMN = "bloodSugar";
-    private static final String WEIGHT_COLUMN = "weight";
+    private static final String BLOODPRESSURE_2_COLUMN = "bloodPressure_2";
     private static final String CREATEDATE_COLUMN = "createDate";
 
     public static String CREATE_TABLE() {
@@ -29,8 +29,7 @@ public class DAOBlood {
         sb.append("Create Table " + TABLE_NAME + " ( ");
         sb.append(KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , ");
         sb.append(BLOODPRESSURE_COLUMN + " TEXT NOT NULL, ");
-        sb.append(BLOODSUGER_COLUMN + " TEXT NOT NULL, ");
-        sb.append(WEIGHT_COLUMN + " TEXT NOT NULL, ");
+        sb.append(BLOODPRESSURE_2_COLUMN + " TEXT NOT NULL, ");
         sb.append(CREATEDATE_COLUMN + " TEXT NOT NULL) ");
         return sb.toString();
     }
@@ -49,16 +48,26 @@ public class DAOBlood {
     }
 
     public boolean insert(Blood item) {
-
         ContentValues cv = new ContentValues();
 
         cv.put(BLOODPRESSURE_COLUMN, item.getBloodPressure());
-        cv.put(BLOODSUGER_COLUMN, item.getBloodSugar());
-        cv.put(WEIGHT_COLUMN, item.getWeight());
+        cv.put(BLOODPRESSURE_2_COLUMN, item.getBloodPressure_2());
         cv.put(CREATEDATE_COLUMN, item.getCreateDate());
 
         long id =  db.insert(TABLE_NAME, null, cv);
         return id > 0;
+    }
+
+    public boolean update(Blood item) {
+        ContentValues cv = new ContentValues();
+
+        cv.put(BLOODPRESSURE_COLUMN, item.getBloodPressure());
+        cv.put(BLOODPRESSURE_2_COLUMN, item.getBloodPressure_2());
+        cv.put(CREATEDATE_COLUMN, item.getCreateDate());
+
+        String where = KEY_ID + "=" + item.getBloodId();
+
+        return db.update(TABLE_NAME, cv, where, null) > 0;
     }
 
     // 讀取所有記事資料
@@ -78,13 +87,19 @@ public class DAOBlood {
         // 準備回傳結果用的物件
         Blood result = new Blood();
 
+        result.setBloodId((int)cursor.getLong(0));
         result.setBloodPressure(cursor.getString(1));
-        result.setBloodSugar(cursor.getString(2));
-        result.setWeight(cursor.getString(3));
-        result.setCreateDate(cursor.getString(4));
+        result.setBloodPressure_2(cursor.getString(2));
+        result.setCreateDate(cursor.getString(3));
 
         // 回傳結果
         return result;
+    }
+
+    public boolean delete(int id) {
+        String where = KEY_ID + "=" + id;
+
+        return db.delete(TABLE_NAME, where, null) > 0;
     }
 
     // 取得資料數量

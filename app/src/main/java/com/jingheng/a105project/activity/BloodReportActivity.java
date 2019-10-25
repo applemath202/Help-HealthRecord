@@ -1,6 +1,5 @@
 package com.jingheng.a105project.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,7 +14,7 @@ import com.jingheng.a105project.sqlite.DAOBlood;
 
 import java.util.ArrayList;
 
-public class BloodReportActivity extends AppCompatActivity {
+public class BloodReportActivity extends CommonActivity {
 
     private RecyclerView rv;
     private DAOBlood daoBlood;
@@ -25,19 +24,22 @@ public class BloodReportActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_report);
+        setContentView(R.layout.activity_blood_report);
+        addBloodButton(R.id.blood_toolbar);
+        assert getSupportActionBar() != null;
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         list = new ArrayList<>();
         daoBlood = new DAOBlood(this);
         if (daoBlood.getCount() == 0) {
-            Toast.makeText(this,"空的",Toast.LENGTH_LONG);
+            Toast.makeText(this, "空的", Toast.LENGTH_LONG);
         }
         list = daoBlood.getAll();
-        Log.d("dao","" + list);
+        Log.d("dao", "" + list);
 
         // ui
-        rv = findViewById(R.id.rv_blood_report);
+        rv = findViewById(R.id.rv_blood_report_report);
         rv.setLayoutManager(new LinearLayoutManager(this));
-        rv.setAdapter(new BloodReportRVAdapter(this,list));
+        rv.setAdapter(new BloodReportRVAdapter(this, list));
     }
 }

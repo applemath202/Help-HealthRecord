@@ -13,7 +13,6 @@ import android.util.Log;
 
 import com.jingheng.a105project.R;
 import com.jingheng.a105project.activity.BloodActivity;
-import com.jingheng.a105project.activity.Main2Activity;
 
 import androidx.core.app.NotificationCompat;
 

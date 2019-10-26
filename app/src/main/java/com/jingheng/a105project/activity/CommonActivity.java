@@ -233,6 +233,23 @@ public class CommonActivity extends AppCompatActivity {
         });
     }
 
+    protected void addPeeButton(int toolbarId) {
+        Toolbar toolbar = findViewById(toolbarId);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+        }
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setResult(RESULT_OK);
+                startActivity(new Intent(CommonActivity.this, WaterActivity.class));
+            }
+        });
+    }
+
     protected void addMainButton(int toolbarId) {
         Toolbar toolbar = findViewById(toolbarId);
         setSupportActionBar(toolbar);

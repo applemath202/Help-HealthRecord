@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.EditWaterActivity"></activity>
+        <activity android:name=".activity.EditPeeActivity"></activity>
+        <activity android:name=".activity.PeeReportActivity" />
+        <activity android:name=".activity.EditWaterActivity" />
         <activity android:name=".activity.EditWeightActivity" />
         <activity android:name=".activity.WeightReportActivity" />
         <activity android:name=".activity.EditBloodSugarActvity" />

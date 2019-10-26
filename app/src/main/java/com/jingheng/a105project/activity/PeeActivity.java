@@ -1,35 +1,27 @@
 package com.jingheng.a105project.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jingheng.a105project.R;
 import com.jingheng.a105project.model.Pee;
-import com.jingheng.a105project.model.Water;
 import com.jingheng.a105project.sqlite.DAOPee;
-import com.jingheng.a105project.sqlite.DAOWater;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 public class PeeActivity extends CommonActivity implements View.OnClickListener {
+
     // ui
     private TextView tv_pee_pee;
-    private ImageView rv_pee_report_;
 
-    //data
-    private String date;
-    private DAOPee daoPee;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,11 +30,13 @@ public class PeeActivity extends CommonActivity implements View.OnClickListener 
         tv_pee_pee = findViewById(R.id.tv_pee_pee);
         tv_pee_pee.setOnClickListener(this);
         findViewById(R.id.pee_finish).setOnClickListener(this);
+        findViewById(R.id.rv_pee_report).setOnClickListener(this);
 
         addBackButton(R.id.pee_toolbar);
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
+
     private void showScrollPicker(final String kind) {
         final Dialog dialog = new Dialog(this);
         //dialog.setTitle("Title");
@@ -75,38 +69,34 @@ public class PeeActivity extends CommonActivity implements View.OnClickListener 
             }
         });
         dialog.show();
-
-
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.rv_pee_report:
+                startActivity(new Intent(this, PeeReportActivity.class));
+                break;
             case R.id.tv_pee_pee:
                 showScrollPicker("pee");
                 break;
-
             case R.id.pee_finish:
                 String pees = tv_pee_pee.getText().toString();
-
 
                 if (pees.isEmpty()) {
                     Toast.makeText(this, "不能是空的", Toast.LENGTH_SHORT).show();
                 } else {
                     Pee pee = new Pee();
                     pee.setPee(pees);
-
-
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.TAIWAN);
                     Date d = new Date();
-                    date = sdf.format(d);
-                    daoPee = new DAOPee(this);
+                    String date = sdf.format(d);
+                    DAOPee daoPee = new DAOPee(this);
+                    pee.setCreateDate(date);
                     daoPee.insert(pee);
                     startActivity(new Intent(this, MainActivity.class));
                 }
                 break;
         }
-
-
     }
 }

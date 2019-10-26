@@ -77,18 +77,26 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         g8.setName("問題解答");
         g8.setPicture(R.drawable.qa);
         list.add(g8);
+
         MainGVItem g9 = new MainGVItem();
         g9.setName("藥物管理");
         g9.setPicture(R.drawable.drug);
         list.add(g9);
+
         MainGVItem g10 = new MainGVItem();
-        g10.setName("設定");
-        g10.setPicture(R.drawable.setting);
+        g10.setName("飲食");
+        g10.setPicture(R.drawable.food);
         list.add(g10);
+
         MainGVItem g11 = new MainGVItem();
-        g11.setName("通知");
+        g11.setName("設定");
         g11.setPicture(R.drawable.setting);
         list.add(g11);
+
+        MainGVItem g12 = new MainGVItem();
+        g12.setName("通知");
+        g12.setPicture(R.drawable.setting);
+        list.add(g12);
 
     }
 
@@ -155,19 +163,27 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
             case 9:
                 Intent i10 = new Intent();
-                i10.setClass(MainActivity.this, SettingActivity.class);
-                i10.putExtra("isSetting", false);
+                i10.setClass(MainActivity.this, FoodActivity.class);
                 startActivity(i10);
                 Toast.makeText(MainActivity.this,
-                        "設定", Toast.LENGTH_SHORT).show();
+                        "飲食", Toast.LENGTH_SHORT).show();
                 break;
             case 10:
                 Intent i11 = new Intent();
-                i11.setClass(MainActivity.this, AlarmActivity.class);
+                i11.setClass(MainActivity.this, SettingActivity.class);
+                i11.putExtra("isSetting", false);
                 startActivity(i11);
+                Toast.makeText(MainActivity.this,
+                        "設定", Toast.LENGTH_SHORT).show();
+                break;
+            case 11:
+                Intent i12 = new Intent();
+                i12.setClass(MainActivity.this, AlarmActivity.class);
+                startActivity(i12);
                 Toast.makeText(MainActivity.this,
                         "通知管理", Toast.LENGTH_SHORT).show();
                 break;
         }
+
     }
 }

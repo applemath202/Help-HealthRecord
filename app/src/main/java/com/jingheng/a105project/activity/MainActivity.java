@@ -184,6 +184,5 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                         "通知管理", Toast.LENGTH_SHORT).show();
                 break;
         }
-
     }
 }

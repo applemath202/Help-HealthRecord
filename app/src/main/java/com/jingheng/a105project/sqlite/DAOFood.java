@@ -20,6 +20,7 @@ public class DAOFood {
 
     // 其它表格欄位名稱
     private static final String FOOD_COLUMN = "food";
+    private static final String HOT_COLUMN = "hot";
     private static final String CREATEDATE_COLUMN = "createDate";
 
     public static String CREATE_TABLE() {
@@ -27,6 +28,7 @@ public class DAOFood {
         sb.append("Create Table " + TABLE_NAME + " ( ");
         sb.append(KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , ");
         sb.append(FOOD_COLUMN + " TEXT NOT NULL, ");
+        sb.append(HOT_COLUMN + " TEXT NOT NULL, ");
         sb.append(CREATEDATE_COLUMN + " TEXT NOT NULL) ");
         return sb.toString();
     }
@@ -49,10 +51,17 @@ public class DAOFood {
         ContentValues cv = new ContentValues();
 
         cv.put(FOOD_COLUMN, item.getFood());
+        cv.put(HOT_COLUMN, item.getHot());
         cv.put(CREATEDATE_COLUMN, item.getCreateDate());
 
         long id = db.insert(TABLE_NAME, null, cv);
         return id > 0;
+    }
+
+    public boolean delete(int id) {
+        String where = KEY_ID + "=" + id;
+
+        return db.delete(TABLE_NAME, where, null) > 0;
     }
 
     // 讀取所有記事資料
@@ -72,8 +81,10 @@ public class DAOFood {
         // 準備回傳結果用的物件
         Food result = new Food();
 
+        result.setFoodId((int)cursor.getLong(0));
         result.setFood(cursor.getString(1));
-        result.setCreateDate(cursor.getString(2));
+        result.setHot(cursor.getString(2));
+        result.setCreateDate(cursor.getString(3));
 
         // 回傳結果
         return result;

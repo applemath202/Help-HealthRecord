@@ -15,7 +15,7 @@ import com.jingheng.a105project.sqlite.DAOFood;
 
 import java.util.ArrayList;
 
-public class FoodReportActivity extends AppCompatActivity {
+public class FoodReportActivity extends CommonActivity {
     private RecyclerView rv;
     private DAOFood daoFood;
 
@@ -25,6 +25,9 @@ public class FoodReportActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_report);
+        addFoodInformationButton(R.id.food_report_toolbar);
+        assert getSupportActionBar() != null;
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         list = new ArrayList<>();
         daoFood = new DAOFood(this);

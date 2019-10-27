@@ -7,29 +7,27 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.jingheng.a105project.helper.DBHelper;
-import com.jingheng.a105project.model.Blood;
-import com.jingheng.a105project.model.Sport;
+import com.jingheng.a105project.model.Drug;
 
 import java.util.ArrayList;
 
-public class DAOSport {// 表格名稱
-    public static final String TABLE_NAME = "Sport";
+public class DAODrug {
+    // 表格名稱
+    public static final String TABLE_NAME = "Drug";
 
     // 編號表格欄位名稱，固定不變
     private static final String KEY_ID = "_id";
 
     // 其它表格欄位名稱
-    private static final String SPORTNAME_COLUMN = "sportName";
-    private static final String SPORTTIME_COLUMN = "sportTime";
-    private static final String CREATEDATE_COLUMN = "createDate";
+    private static final String DRUGNAME_COLUMN = "Drugname";
+    private static final String DRUGTIME_COLUMN = "Drugtime";
 
     public static String CREATE_TABLE() {
         StringBuilder sb = new StringBuilder();
         sb.append("Create Table " + TABLE_NAME + " ( ");
         sb.append(KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , ");
-        sb.append(SPORTNAME_COLUMN + " TEXT NOT NULL, ");
-        sb.append(SPORTTIME_COLUMN + " TEXT NOT NULL, ");
-        sb.append(CREATEDATE_COLUMN + " TEXT NOT NULL) ");
+        sb.append(DRUGNAME_COLUMN + " TEXT NOT NULL, ");
+        sb.append(DRUGTIME_COLUMN + " TEXT NOT NULL) ");
         return sb.toString();
     }
 
@@ -37,7 +35,7 @@ public class DAOSport {// 表格名稱
     private SQLiteDatabase db;
 
     // 建構子，一般的應用都不需要修改
-    public DAOSport(Context context) {
+    public DAODrug(Context context) {
         db = DBHelper.getDatabase(context);
     }
 
@@ -46,21 +44,46 @@ public class DAOSport {// 表格名稱
         db.close();
     }
 
-    public boolean insert(Sport item) {
-
+    public boolean insert(Drug item) {
         ContentValues cv = new ContentValues();
 
-        cv.put(SPORTNAME_COLUMN, item.getSportName());
-        cv.put(SPORTTIME_COLUMN, item.getSportTime());
-        cv.put(CREATEDATE_COLUMN, item.getCreateDate());
+        cv.put(DRUGNAME_COLUMN, item.getDrugName());
+        cv.put(DRUGTIME_COLUMN, item.getDrugTime());
 
-        long id =  db.insert(TABLE_NAME, null, cv);
+        long id = db.insert(TABLE_NAME, null, cv);
         return id > 0;
     }
 
+    public boolean update(Drug item) {
+        ContentValues cv = new ContentValues();
+
+        cv.put(DRUGNAME_COLUMN, item.getDrugName());
+        cv.put(DRUGTIME_COLUMN, item.getDrugTime());
+
+        String where = KEY_ID + "=" + item.getDrugId();
+
+        return db.update(TABLE_NAME, cv, where, null) > 0;
+    }
+
+    public Drug get(int id) {
+
+        Drug item = null;
+        String where = KEY_ID + "=" + id;
+
+        Cursor result = db.query(
+                TABLE_NAME, null, where, null, null, null, null, null);
+
+        if (result.moveToFirst()) {
+            item = getRecord(result);
+        }
+
+        result.close();
+        return item;
+    }
+
     // 讀取所有記事資料
-    public ArrayList<Sport> getAll() {
-        ArrayList<Sport> result = new ArrayList<>();
+    public ArrayList<Drug> getAll() {
+        ArrayList<Drug> result = new ArrayList<>();
         Cursor cursor = db.query(TABLE_NAME, null, null, null, null, null, KEY_ID + " desc", null);
 
         while (cursor.moveToNext()) {
@@ -71,18 +94,18 @@ public class DAOSport {// 表格名稱
     }
 
     // 把Cursor目前的資料包裝為物件
-    private Sport getRecord(Cursor cursor) {
+    private Drug getRecord(Cursor cursor) {
         // 準備回傳結果用的物件
-        Sport result = new Sport();
+        Drug result = new Drug();
 
-        result.setSportID((int)cursor.getLong(0));
-        result.setSportName(cursor.getString(1));
-        result.setSportTime(cursor.getString(2));
-        result.setCreateDate(cursor.getString(3));
+        result.setDrugId((int) cursor.getLong(0));
+        result.setDrugName(cursor.getString(1));
+        result.setDrugTime(cursor.getString(2));
 
         // 回傳結果
         return result;
     }
+
     public boolean delete(int id) {
         String where = KEY_ID + "=" + id;
 

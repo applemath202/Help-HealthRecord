@@ -2,13 +2,17 @@ package com.jingheng.a105project.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jingheng.a105project.R;
@@ -21,14 +25,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class SportActivity extends AppCompatActivity implements View.OnClickListener {
+public class SportActivity extends CommonActivity implements View.OnClickListener {
 
     // ui
-    private EditText et_sport_name, et_sport_time;
-
-    //data
-    private String date;
-    private DAOSport daoSport;
+    private TextView tv_sport_sportname, tv_sport_min;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,55 +36,87 @@ public class SportActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_sport);
 
         // ui
-        et_sport_name = findViewById(R.id.et_activity_sport_sport_name);
-        et_sport_time = findViewById(R.id.et_activity_sport_sport_time);
+        tv_sport_sportname = findViewById(R.id.tv_sport_sportname);
+        tv_sport_sportname.setOnClickListener(this);
+        tv_sport_min = findViewById(R.id.tv_sport_min);
+        tv_sport_min.setOnClickListener(this);
+        findViewById(R.id.sport_finish).setOnClickListener(this);
+        findViewById(R.id.rv_sport_report).setOnClickListener(this);
 
-        findViewById(R.id.bt_activity_sport_save).setOnClickListener(this);
-        findViewById(R.id.iv_activity_sport_report).setOnClickListener(this);
-
-        // data
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.TAIWAN);
-        Date d = new Date();
-        date = sdf.format(d);
-        daoSport = new DAOSport(this);
-
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        //建立一個ArrayAdapter物件，並放置下拉選單的內容
-        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.myspinner, new String[]{"慢走", "室內腳踏車", "有氧舞蹈", "羽毛球", "排球","慢跑","爬樓梯"});
-        //設定下拉選單的樣式
-        adapter.setDropDownViewResource(R.layout.myspinner);
-        spinner.setAdapter(adapter);
-        //設定項目被選取之後的動作
-        spinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                Toast.makeText(SportActivity.this, "您選擇" + adapterView.getSelectedItem().toString(), Toast.LENGTH_LONG).show();
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-                Toast.makeText(SportActivity.this, "您沒有選擇任何項目", Toast.LENGTH_LONG).show();
-            }
-
-        });
+        addMainButton(R.id.sport_toolbar);
+        assert getSupportActionBar() != null;
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
-    @Override
+    private void showScrollPicker(final String kind) {
+        final Dialog dialog = new Dialog(this);
+        //dialog.setTitle("Title");
+        dialog.setContentView(R.layout.dialog_picker);
+        Button dp_bt_cancel = dialog.findViewById(R.id.dp_bt_cancel);
+        Button dp_bt_set = dialog.findViewById(R.id.dp_bt_set);
+        final NumberPicker numberPicker = dialog.findViewById(R.id.dp_np);
+        final String[] sportname = getResources().getStringArray(R.array.sportname);
+
+        if (kind.equals("min")) {
+            numberPicker.setMinValue(1);
+            numberPicker.setMaxValue(60);
+            numberPicker.setValue(15); // 設定預設位置
+        } else {
+            numberPicker.setMinValue(0);
+            numberPicker.setMaxValue(sportname.length - 1);
+            numberPicker.setDisplayedValues(sportname);
+            numberPicker.setValue(0); // 設定預設位置
+        }
+        numberPicker.setWrapSelectorWheel(false); // 是否循環顯示
+        numberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS); // 不可編輯
+
+        dp_bt_set.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (kind.equals("sportname")) {
+                    tv_sport_sportname.setText(String.valueOf(sportname[numberPicker.getValue()]));
+                } else {
+                    tv_sport_min.setText(String.valueOf(numberPicker.getValue()));
+                }
+                dialog.dismiss();
+            }
+        });
+        dp_bt_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.bt_activity_sport_save:
-                Sport sport = new Sport(
-                        et_sport_name.getText().toString(),
-                        et_sport_time.getText().toString(),
-                        date
-                );
-                daoSport.insert(sport);
-                Toast.makeText(this, "儲存成功", Toast.LENGTH_SHORT).show();
-                break;
-
-            case R.id.iv_activity_sport_report:
+            case R.id.rv_sport_report:
                 startActivity(new Intent(this, SportReportActivity.class));
+                break;
+            case R.id.tv_sport_sportname:
+                showScrollPicker("sportname");
+                break;
+            case R.id.tv_sport_min:
+                showScrollPicker("min");
+                break;
+            case R.id.sport_finish:
+                String sportname = tv_sport_sportname.getText().toString();
+                String min = tv_sport_min.getText().toString();
+
+                if (sportname.isEmpty() || min.isEmpty()) {
+                    Toast.makeText(this, "不能是空的", Toast.LENGTH_SHORT).show();
+                } else {
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.TAIWAN);
+                    Date d = new Date();
+                    DAOSport daoSport = new DAOSport(this);
+                    //data
+                    String date = sdf.format(d);
+                    Sport sport = new Sport(sportname, min, date);
+                    daoSport.insert(sport);
+                    startActivity(new Intent(this, MainActivity.class));
+                }
                 break;
         }
     }

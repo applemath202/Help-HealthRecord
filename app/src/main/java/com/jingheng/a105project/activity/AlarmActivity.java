@@ -40,20 +40,6 @@ public class AlarmActivity extends AppCompatActivity {
         createChannel(channelId, "Default", "Zahamena default notify channel");
     }
 
-    public void clickActionSend(View view) {
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.SECOND,1);
-
-        Intent intent = new Intent(this, PlayReceiver.class);
-        intent.putExtra("msg", "play_hskay");
-
-        PendingIntent pi = PendingIntent.getBroadcast(this, 1, intent, PendingIntent.FLAG_ONE_SHOT);
-
-        AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pi);
-        Log.d("testAlarm", "click");
-    }
-
     // 建立與設定Notify channel
     // 加入裝置版本的判斷，應用程式就不用把最低版本設定為API level 26
     private void createChannel(String id, String name, String desc) {

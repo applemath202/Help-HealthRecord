@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.jingheng.a105project.sqlite.DAOAlarm;
 import com.jingheng.a105project.sqlite.DAOBlood;
 import com.jingheng.a105project.sqlite.DAOBloodSugar;
+import com.jingheng.a105project.sqlite.DAODrug;
 import com.jingheng.a105project.sqlite.DAOFood;
 import com.jingheng.a105project.sqlite.DAOPee;
 import com.jingheng.a105project.sqlite.DAOSport;
@@ -45,6 +46,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(DAOBloodSugar.CREATE_TABLE());
         db.execSQL(DAOWeight.CREATE_TABLE());
         db.execSQL(DAOPee.CREATE_TABLE());
+        db.execSQL(DAODrug.CREATE_TABLE());
     }
 
     @Override
@@ -58,6 +60,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + DAOBloodSugar.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + DAOWeight.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + DAOPee.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + DAODrug.TABLE_NAME);
 
         // 呼叫onCreate建立新版的表格
         onCreate(db);

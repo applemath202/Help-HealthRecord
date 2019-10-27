@@ -121,4 +121,13 @@
         <item>男</item>
         <item>女</item>
     </string-array>
+    <string-array name="sportname">
+        <item>慢走</item>
+        <item>排球</item>
+        <item>慢跑</item>
+        <item>爬樓梯</item>
+        <item>羽毛球</item>
+        <item>有氧舞蹈</item>
+        <item>室內腳踏車</item>
+    </string-array>
 </resources>

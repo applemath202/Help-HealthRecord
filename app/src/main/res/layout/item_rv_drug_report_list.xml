@@ -5,19 +5,13 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/tv_item_rv_sport_report_list_sportname"
+        android:id="@+id/tv_item_rv_drug_report_list_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#000"/>
 
     <TextView
-        android:id="@+id/tv_item_rv_sport_report_list_min"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#000"/>
-
-    <TextView
-        android:id="@+id/tv_item_rv_sport_report_list_create_date"
+        android:id="@+id/tv_item_rv_drug_report_list_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#000"/>

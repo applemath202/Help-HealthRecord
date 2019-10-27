@@ -6,46 +6,44 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jingheng.a105project.R;
-import com.jingheng.a105project.adapter.BloodReportRVAdapter;
-import com.jingheng.a105project.adapter.SportReportRVAdapter;
-import com.jingheng.a105project.model.Blood;
-import com.jingheng.a105project.model.Sport;
+import com.jingheng.a105project.adapter.DrugReportRVAdapter;
+import com.jingheng.a105project.model.Drug;
 import com.jingheng.a105project.sqlite.DAOBlood;
-import com.jingheng.a105project.sqlite.DAOSport;
+import com.jingheng.a105project.sqlite.DAODrug;
 
 import java.util.ArrayList;
 
-public class SportReportActivity extends CommonActivity {
+import javax.xml.transform.dom.DOMResult;
+
+public class DrugReportActivity extends CommonActivity {
 
     private RecyclerView rv;
-    private DAOSport daoSport;
+    private DAODrug daoDrug;
 
-    private ArrayList<Sport> list;
+    private ArrayList<Drug> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sport_report);
-        addsportButton(R.id.sport_toolbar);
+        setContentView(R.layout.activity_drug_report);
+        adddrugButton(R.id.drug_report_toolbar);
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         list = new ArrayList<>();
-        daoSport = new DAOSport(this);
-        if (daoSport.getCount() == 0) {
+        daoDrug = new DAODrug(this);
+        if (daoDrug.getCount() == 0) {
             Toast.makeText(this, "空的", Toast.LENGTH_LONG);
         }
-        list = daoSport.getAll();
+        list = daoDrug.getAll();
         Log.d("dao", "" + list);
 
         // ui
-        rv = findViewById(R.id.rv_sport_report_report);
+        rv = findViewById(R.id.rv_drug_report_report);
         rv.setLayoutManager(new LinearLayoutManager(this));
-        rv.setAdapter(new SportReportRVAdapter(this, list));
+        rv.setAdapter(new DrugReportRVAdapter(this, list));
     }
 }

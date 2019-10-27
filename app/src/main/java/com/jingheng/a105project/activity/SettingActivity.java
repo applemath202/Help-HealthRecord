@@ -4,8 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
 import android.app.Dialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
@@ -22,6 +28,7 @@ import com.appeaser.sublimepickerlibrary.helpers.SublimeOptions;
 import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicker;
 import com.jingheng.a105project.R;
 import com.jingheng.a105project.fragment.SublimePickerFragment;
+import com.jingheng.a105project.helper.PlayReceiver;
 import com.jingheng.a105project.helper.SPHelper;
 import com.jingheng.a105project.model.Alarm;
 import com.jingheng.a105project.model.Person;
@@ -30,6 +37,8 @@ import com.jingheng.a105project.sqlite.DAOAlarm;
 import org.w3c.dom.Text;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 public class SettingActivity extends CommonActivity implements View.OnClickListener {
 
@@ -37,14 +46,17 @@ public class SettingActivity extends CommonActivity implements View.OnClickListe
     private TextView tv_sex, tv_weight, tv_height, tv_birth, tv_wake_up_plus,
             tv_sleep_plus, tv_breakfast_plus, tv_lunch_plus, tv_dinner_plus,
             tv_sport_plus, tv_weiht_plus;
+
     private ImageView iv;
 
     // data
     SelectedDate mSelectedDate;
-    int mHour, mMinute;
+    String mHour, mMinute;
     String mRecurrenceOption, mRecurrenceRule;
     private String dateKind;
     private boolean isSetting;
+    private boolean isCreated = false;
+    private Alarm alarm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,8 +112,8 @@ public class SettingActivity extends CommonActivity implements View.OnClickListe
             findViewById(R.id.ll_alarm).setVisibility(View.VISIBLE);
             DAOAlarm daoAlarm = new DAOAlarm(this);
             Log.d("testSetting", "" + daoAlarm.getCount());
-            if(daoAlarm.getCount() != 0){
-                Alarm alarm = daoAlarm.get(1);
+            if (daoAlarm.getCount() != 0) {
+                alarm = daoAlarm.get(1);
                 tv_wake_up_plus.setText(alarm.getWakeup());
                 tv_breakfast_plus.setText(alarm.getBreakfast());
                 tv_lunch_plus.setText(alarm.getLunch());
@@ -192,8 +204,14 @@ public class SettingActivity extends CommonActivity implements View.OnClickListe
         @Override
         public void onDateTimeRecurrenceSet(SelectedDate selectedDate, int hourOfDay, int minute, SublimeRecurrencePicker.RecurrenceOption recurrenceOption, String recurrenceRule) {
             mSelectedDate = selectedDate;
-            mHour = hourOfDay;
-            mMinute = minute;
+            mHour = String.valueOf(hourOfDay);
+            if(mHour.length() == 1){
+                mHour = "0" + hourOfDay;
+            }
+            mMinute = String.valueOf(minute);
+            if(mMinute.length() == 1){
+                mMinute = "0" + minute;
+            }
             mRecurrenceOption = recurrenceOption != null ? recurrenceOption.name() : "n/a";
             mRecurrenceRule = recurrenceRule != null ? recurrenceRule : "n/a";
             updateInfoView();
@@ -259,6 +277,74 @@ public class SettingActivity extends CommonActivity implements View.OnClickListe
         }
     }
 
+    private void setCal(Alarm alarm) {
+        Calendar cal_wake_up = new GregorianCalendar(TimeZone.getTimeZone("GMT+8:00"));
+        cal_wake_up.add(Calendar.DATE, 0);
+        cal_wake_up.set(Calendar.HOUR_OF_DAY, Integer.valueOf(alarm.getWakeup().substring(0,2)));
+        cal_wake_up.set(Calendar.MINUTE, Integer.valueOf(alarm.getWakeup().substring(3,5)));
+        cal_wake_up.set(Calendar.SECOND, 0);
+
+        Log.d("testAlarm", "time:" + Integer.valueOf(alarm.getWakeup().substring(0,2)) + Integer.valueOf(alarm.getWakeup().substring(3,5)));
+        setAlarm("wakeUp", cal_wake_up);
+
+        Calendar cal_sleep = new GregorianCalendar(TimeZone.getTimeZone("GMT+8:00"));
+        cal_sleep.add(Calendar.DATE, 0);
+        cal_sleep.set(Calendar.HOUR_OF_DAY, Integer.valueOf(alarm.getSleep().substring(0,2)));
+        cal_sleep.set(Calendar.MINUTE, Integer.valueOf(alarm.getSleep().substring(3,5)));
+        cal_sleep.set(Calendar.SECOND, 0);
+        setAlarm("sleep", cal_sleep);
+
+        Calendar cal_breakfast = new GregorianCalendar(TimeZone.getTimeZone("GMT+8:00"));
+        cal_breakfast.add(Calendar.DATE, 0);
+        cal_breakfast.set(Calendar.HOUR_OF_DAY, Integer.valueOf(alarm.getBreakfast().substring(0,2)));
+        cal_breakfast.set(Calendar.MINUTE, Integer.valueOf(alarm.getBreakfast().substring(3,5)));
+        cal_breakfast.set(Calendar.SECOND, 0);
+        setAlarm("breakfast", cal_breakfast);
+
+        Calendar cal_lunch = new GregorianCalendar(TimeZone.getTimeZone("GMT+8:00"));
+        cal_lunch.add(Calendar.DATE, 0);
+        cal_lunch.set(Calendar.HOUR_OF_DAY, Integer.valueOf(alarm.getLunch().substring(0,2)));
+        cal_lunch.set(Calendar.MINUTE, Integer.valueOf(alarm.getLunch().substring(3,5)));
+        cal_lunch.set(Calendar.SECOND, 0);
+        setAlarm("lunch", cal_lunch);
+
+        Calendar cal_dinner = new GregorianCalendar(TimeZone.getTimeZone("GMT+8:00"));
+        cal_dinner.add(Calendar.DATE, 0);
+        cal_dinner.set(Calendar.HOUR_OF_DAY, Integer.valueOf(alarm.getDinner().substring(0,2)));
+        cal_dinner.set(Calendar.MINUTE, Integer.valueOf(alarm.getDinner().substring(3,5)));
+        cal_dinner.set(Calendar.SECOND, 0);
+        setAlarm("dinner", cal_dinner);
+
+        Calendar cal_sport = new GregorianCalendar(TimeZone.getTimeZone("GMT+8:00"));
+        cal_sport.add(Calendar.DATE, 0);
+        cal_sport.set(Calendar.HOUR_OF_DAY, Integer.valueOf(alarm.getSport().substring(0,2)));
+        cal_sport.set(Calendar.MINUTE, Integer.valueOf(alarm.getSport().substring(3,5)));
+        cal_sport.set(Calendar.SECOND, 0);
+        setAlarm("sport", cal_sport);
+
+        Calendar cal_weight = new GregorianCalendar(TimeZone.getTimeZone("GMT+8:00"));
+        cal_weight.add(Calendar.DATE, 0);
+        cal_weight.set(Calendar.HOUR_OF_DAY, Integer.valueOf(alarm.getWeight().substring(0,2)));
+        cal_weight.set(Calendar.MINUTE, Integer.valueOf(alarm.getWeight().substring(3,5)));
+        cal_weight.set(Calendar.SECOND, 0);
+        setAlarm("weight", cal_weight);
+    }
+
+    private void setAlarm(String title, Calendar cal) {
+        Intent intent = new Intent(this, PlayReceiver.class);
+        intent.addCategory(title);
+
+        intent.putExtra("title", "activity_app");
+        intent.putExtra("kind", title);
+
+        PendingIntent pi = PendingIntent.getBroadcast(this, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Log.d("testAlarm", "" + cal.getTimeInMillis());
+
+        AlarmManager am = (AlarmManager) this.getSystemService(ALARM_SERVICE);
+        am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pi);
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -311,7 +397,7 @@ public class SettingActivity extends CommonActivity implements View.OnClickListe
                     String birth = tv_birth.getText().toString();
                     if (sex.isEmpty() || weight.isEmpty() || height.isEmpty() || birth.isEmpty()) {
                         Toast.makeText(this, "不能是空的", Toast.LENGTH_SHORT).show();
-                    }else{
+                    } else {
                         Person person = Person.getInstance();
                         person.setSex(sex);
                         person.setHeight(height);
@@ -331,10 +417,9 @@ public class SettingActivity extends CommonActivity implements View.OnClickListe
                     if (wakeUp.isEmpty() || breakfast.isEmpty() || lunch.isEmpty() || dinner.isEmpty() ||
                             sleep.isEmpty() || sport.isEmpty() || weight_plus.isEmpty()) {
                         Toast.makeText(this, "不能是空的", Toast.LENGTH_SHORT).show();
-                    }else{
+                    } else {
                         DAOAlarm daoAlarm = new DAOAlarm(this);
-                        if(daoAlarm.getCount() != 0){
-                            Alarm alarm = daoAlarm.get(1);
+                        if (daoAlarm.getCount() != 0) {
                             alarm.setAlarmId(1);
                             alarm.setWakeup(wakeUp);
                             alarm.setBreakfast(breakfast);
@@ -343,10 +428,11 @@ public class SettingActivity extends CommonActivity implements View.OnClickListe
                             alarm.setSleep(sleep);
                             alarm.setSport(sport);
                             alarm.setWeight(weight_plus);
-                            Log.d("testSetting","" + alarm.getAlarmId());
                             daoAlarm.update(alarm);
-                        }else{
-                            Alarm alarm = new Alarm();
+                            isCreated = false;
+                            setCal(alarm);
+                        } else {
+                            alarm = new Alarm();
                             alarm.setWakeup(wakeUp);
                             alarm.setBreakfast(breakfast);
                             alarm.setLunch(lunch);
@@ -355,6 +441,8 @@ public class SettingActivity extends CommonActivity implements View.OnClickListe
                             alarm.setSport(sport);
                             alarm.setWeight(weight_plus);
                             daoAlarm.insert(alarm);
+                            isCreated = true;
+                            setCal(alarm);
                         }
                         startActivity(new Intent(this, MainActivity.class));
                     }

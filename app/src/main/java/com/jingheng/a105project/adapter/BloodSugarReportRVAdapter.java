@@ -47,7 +47,7 @@ public class BloodSugarReportRVAdapter extends CommonRVAdapter {
                 @Override
                 public void onClick(View view) {
                     getContext().startActivity(new Intent(getContext(), EditBloodSugarActvity.class)
-                            .putExtra("bloodsugar", bloodSugar));
+                            .putExtra("bloodSugar",bloodSugar));
                 }
             });
 

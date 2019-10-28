@@ -49,7 +49,7 @@ public class BloodReportRVAdapter extends CommonRVAdapter{
                 @Override
                 public void onClick(View view) {
                     getContext().startActivity(new Intent(getContext(), EditBloodActivity.class)
-                    .putExtra("blood",blood));
+                            .putExtra("blood", blood));
                 }
             });
 

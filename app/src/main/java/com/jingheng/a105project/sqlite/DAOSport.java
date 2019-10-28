@@ -57,6 +57,16 @@ public class DAOSport {// 表格名稱
         long id =  db.insert(TABLE_NAME, null, cv);
         return id > 0;
     }
+    public boolean update(Sport item) {
+        ContentValues cv = new ContentValues();
+        cv.put(SPORTNAME_COLUMN, item.getSportName());
+        cv.put(SPORTTIME_COLUMN, item.getSportTime());
+        cv.put(CREATEDATE_COLUMN, item.getCreateDate());
+
+        String where = KEY_ID + "=" + item.getSportID();
+
+        return db.update(TABLE_NAME, cv, where, null) > 0;
+    }
 
     // 讀取所有記事資料
     public ArrayList<Sport> getAll() {

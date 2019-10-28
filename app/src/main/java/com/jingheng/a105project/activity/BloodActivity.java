@@ -44,7 +44,7 @@ public class BloodActivity extends CommonActivity implements View.OnClickListene
         findViewById(R.id.blood_finish).setOnClickListener(this);
         findViewById(R.id.rv_blood_report).setOnClickListener(this);
 
-        addMainButton(R.id.setting_toolbar);
+        addMainButton(R.id.blood_toolbar);
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayShowTitleEnabled(false);
     }

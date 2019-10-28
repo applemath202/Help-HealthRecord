@@ -13,32 +13,20 @@ public class BloodSugar implements Parcelable {
 
     private ArrayList<BloodSugar> bloodsugars;
 
-    public BloodSugar(String bloodsugar , String createDate){
+    public BloodSugar(String bloodsugar, String createDate) {
         this.bloodsugar = bloodsugar;
         this.createDate = createDate;
     }
 
-    public BloodSugar(){
+    public BloodSugar() {
         bloodsugars = new ArrayList<>();
     }
 
     protected BloodSugar(Parcel in) {
-        bloodsugarId=in.readInt();
+        bloodsugarId = in.readInt();
         bloodsugar = in.readString();
         createDate = in.readString();
         bloodsugars = in.createTypedArrayList(BloodSugar.CREATOR);
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(bloodsugar);
-        dest.writeString(createDate);
-        dest.writeTypedList(bloodsugars);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
     }
 
     public static final Creator<BloodSugar> CREATOR = new Creator<BloodSugar>() {
@@ -87,5 +75,18 @@ public class BloodSugar implements Parcelable {
 
     public void setBloodsugars(ArrayList<BloodSugar> bloodsugars) {
         this.bloodsugars = bloodsugars;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(bloodsugarId);
+        dest.writeString(bloodsugar);
+        dest.writeString(createDate);
+        dest.writeTypedList(bloodsugars);
     }
 }

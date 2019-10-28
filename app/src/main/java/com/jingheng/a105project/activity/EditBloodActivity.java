@@ -34,9 +34,16 @@ public class EditBloodActivity extends CommonActivity implements View.OnClickLis
         // extra
         blood = getIntent().getParcelableExtra("blood");
 
+        // ui
+        tv_blood_bloodpressure = findViewById(R.id.tv_edit_blood_bloodpressure);
+        tv_blood_bloodpressure.setOnClickListener(this);
+        tv_blood_bloodpressure.setText(blood.getBloodPressure());
+        tv_blood_bloodpressure_2 = findViewById(R.id.tv_edit_blood_bloodpressure_2);
+        tv_blood_bloodpressure_2.setOnClickListener(this);
+        tv_blood_bloodpressure_2.setText(blood.getBloodPressure_2());
+        findViewById(R.id.edit_blood_finish).setOnClickListener(this);
 
-
-        addMainButton(R.id.setting_toolbar);
+        addMainButton(R.id.edit_blood_toolbar);
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
@@ -84,16 +91,13 @@ public class EditBloodActivity extends CommonActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.rv_blood_report:
-                startActivity(new Intent(this, BloodReportActivity.class));
-                break;
-            case R.id.tv_blood_bloodpressure:
+            case R.id.tv_edit_blood_bloodpressure:
                 showScrollPicker("bloodpressure");
                 break;
-            case R.id.tv_blood_bloodpressure_2:
+            case R.id.tv_edit_blood_bloodpressure_2:
                 showScrollPicker("bloodpressure_2");
                 break;
-            case R.id.blood_finish:
+            case R.id.edit_blood_finish:
                 String bloodpressure = tv_blood_bloodpressure.getText().toString();
                 String bloodpressure_2 = tv_blood_bloodpressure_2.getText().toString();
 

@@ -37,7 +37,6 @@ public class QAAdapter extends CommonRVAdapter {
             final String title = list.get(position);
             ViewHolder h = (ViewHolder) holder;
             h.title.setText(title);
-
             h.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

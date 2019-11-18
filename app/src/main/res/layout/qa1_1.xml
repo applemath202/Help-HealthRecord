@@ -45,7 +45,7 @@
                 android:text="返回"
                 android:textColor="#FFF"
                 android:background="@color/colorPrimary"
-                android:id="@+id/qa1_1_1_back"/>
+                android:id="@+id/back"/>
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

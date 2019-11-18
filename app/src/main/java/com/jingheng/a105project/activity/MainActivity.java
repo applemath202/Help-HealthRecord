@@ -78,14 +78,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         g8.setPicture(R.drawable.qa);
         list.add(g8);
 
+
         MainGVItem g9 = new MainGVItem();
-        g9.setName("藥物管理");
-        g9.setPicture(R.drawable.drug);
+        g9.setName("飲食");
+        g9.setPicture(R.drawable.food);
         list.add(g9);
 
         MainGVItem g10 = new MainGVItem();
-        g10.setName("飲食");
-        g10.setPicture(R.drawable.food);
+        g10.setName("報告解釋");
+        g10.setPicture(R.drawable.dataexplan);
         list.add(g10);
 
         MainGVItem g11 = new MainGVItem();
@@ -93,10 +94,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         g11.setPicture(R.drawable.setting);
         list.add(g11);
 
-        MainGVItem g12 = new MainGVItem();
-        g12.setName("通知");
-        g12.setPicture(R.drawable.setting);
-        list.add(g12);
 
     }
 
@@ -155,18 +152,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 break;
             case 8:
                 Intent i9 = new Intent();
-                i9.setClass(MainActivity.this, DrugActivity.class);
+                i9.setClass(MainActivity.this, FoodActivity.class);
                 startActivity(i9);
                 Toast.makeText(MainActivity.this,
-                        "藥物管理", Toast.LENGTH_SHORT).show();
+                        "飲食", Toast.LENGTH_SHORT).show();
                 break;
-
             case 9:
                 Intent i10 = new Intent();
-                i10.setClass(MainActivity.this, FoodActivity.class);
+                i10.setClass(MainActivity.this, DataExplan.class);
                 startActivity(i10);
                 Toast.makeText(MainActivity.this,
-                        "飲食", Toast.LENGTH_SHORT).show();
+                        "報告解釋", Toast.LENGTH_SHORT).show();
                 break;
             case 10:
                 Intent i11 = new Intent();
@@ -176,13 +172,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 Toast.makeText(MainActivity.this,
                         "設定", Toast.LENGTH_SHORT).show();
                 break;
-            case 11:
-                Intent i12 = new Intent();
-                i12.setClass(MainActivity.this, AlarmActivity.class);
-                startActivity(i12);
-                Toast.makeText(MainActivity.this,
-                        "通知管理", Toast.LENGTH_SHORT).show();
-                break;
+
         }
     }
 }

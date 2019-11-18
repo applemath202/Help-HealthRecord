@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.jingheng.a105project.R;
+
 public class DataExplan extends AppCompatActivity {
 
     @Override

@@ -1,9 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activity.QAActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/qa_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:maxLines="1"
+                android:textColor="#FFF"
+                android:text="問題解答"
+                android:textSize="20sp" />
+
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:orientation="vertical">
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/qa_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="15dp"/>
+        <LinearLayout
+            android:id="@+id/QA1_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20sp"
+            android:gravity="left"
+            android:visibility="invisible"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/QA1_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingTop="15dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="15dp"
+                android:text="淺談腎臟"
+                android:gravity="start"
+                android:textSize="16sp"
+                android:textColor="#000"/>
+            <TextView
+                android:id="@+id/QA1_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingTop="15dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="15dp"
+                android:text="何謂慢性腎臟病"
+                android:gravity="start"
+                android:textSize="16sp"
+                android:textColor="#000"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/QA2_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20sp"
+            android:gravity="left"
+            android:visibility="invisible"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/QA2_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingTop="15dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="15dp"
+                android:text="12345"
+                android:gravity="start"
+                android:textSize="16sp"
+                android:textColor="#000"/>
+            <TextView
+                android:id="@+id/QA2_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingTop="15dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="15dp"
+                android:text="87878"
+                android:gravity="start"
+                android:textSize="16sp"
+                android:textColor="#000"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/QA3_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20sp"
+            android:gravity="left"
+            android:visibility="invisible"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/QA3_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingTop="15dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="15dp"
+                android:text="12345"
+                android:gravity="start"
+                android:textSize="16sp"
+                android:textColor="#000"/>
+            <TextView
+                android:id="@+id/QA3_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingTop="15dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="15dp"
+                android:text="87878"
+                android:gravity="start"
+                android:textSize="16sp"
+                android:textColor="#000"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/QA4_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20sp"
+            android:gravity="left"
+            android:visibility="invisible"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/QA4_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingTop="15dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="15dp"
+                android:text="12345"
+                android:gravity="start"
+                android:textSize="16sp"
+                android:textColor="#000"/>
+            <TextView
+                android:id="@+id/QA4_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingTop="15dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="15dp"
+                android:text="87878"
+                android:gravity="start"
+                android:textSize="16sp"
+                android:textColor="#000"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

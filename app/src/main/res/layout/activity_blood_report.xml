@@ -25,12 +25,19 @@
                 android:textColor="#FFF"
                 android:text="血壓紀錄表"
                 android:textSize="20sp" />
+
         </androidx.appcompat.widget.Toolbar>
+
+
+
     </com.google.android.material.appbar.AppBarLayout>
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_blood_report_report"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

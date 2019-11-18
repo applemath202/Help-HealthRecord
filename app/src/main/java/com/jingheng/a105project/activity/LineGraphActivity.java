@@ -16,6 +16,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -38,6 +40,7 @@ import com.jingheng.a105project.model.Blood;
 import com.jingheng.a105project.model.BloodSugar;
 import com.jingheng.a105project.model.Food;
 import com.jingheng.a105project.model.Pee;
+import com.jingheng.a105project.model.Person;
 import com.jingheng.a105project.model.Sport;
 import com.jingheng.a105project.model.Water;
 import com.jingheng.a105project.model.Weight;
@@ -63,8 +66,9 @@ public class LineGraphActivity extends DemoBase implements View.OnClickListener,
 
     // ui
     private LineChart chart;
-
+    private TextView graph_trend;
     private String selectItem;
+    private LinearLayout ll;
 
     // data-date
     private String date;
@@ -86,7 +90,6 @@ public class LineGraphActivity extends DemoBase implements View.OnClickListener,
     private ArrayList<Food> foodList;
     private ArrayList<Food> foodDao;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,6 +100,7 @@ public class LineGraphActivity extends DemoBase implements View.OnClickListener,
 
         // ui
         MaterialSpinner spinner = findViewById(R.id.food_spinner);
+        ll = findViewById(R.id.alg_ll);
         chart = findViewById(R.id.chart);
 
         //init
@@ -104,7 +108,7 @@ public class LineGraphActivity extends DemoBase implements View.OnClickListener,
         initChart();
         setChartValues();
         setChart();
-        spinner.setItems("血壓", "血糖", "體重", "運動", "水分","尿液","飲食");
+        spinner.setItems("血壓", "血糖", "體重", "運動", "水分", "尿液", "飲食");
         spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
             @Override
             public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
@@ -146,7 +150,7 @@ public class LineGraphActivity extends DemoBase implements View.OnClickListener,
                 }
             }
         }
-        bloodsugarList =new ArrayList<>();
+        bloodsugarList = new ArrayList<>();
         bloodsugarDao = new ArrayList<>();
         DAOBloodSugar daoBloodSugar = new DAOBloodSugar(this);
         bloodsugarDao.addAll(daoBloodSugar.getAll());
@@ -213,21 +217,44 @@ public class LineGraphActivity extends DemoBase implements View.OnClickListener,
                 }
             }
         }
-
-
     }
 
     private void setChart() {
+        TextView graph_trend = findViewById(R.id.graph_trend);
         chart.resetTracking();
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
-
-        switch (selectItem){
+        switch (selectItem) {
             case "血壓":
                 // blood
                 ArrayList<Entry> blood_pressure_values = new ArrayList<>();
+                int x = 0;
+                int z = 0;
                 for (int i = 0; i < bloodList.size(); i++) {
                     Blood blood = bloodList.get(i);
                     blood_pressure_values.add(new Entry(i, Float.valueOf(blood.getBloodPressure())));
+
+                    Long s = Long.valueOf(blood.getBloodPressure());
+                    Long s2 = Long.valueOf(blood.getBloodPressure_2());
+
+                    if (s > 130 || s2 > 80) {
+                        x++;
+                    } else {
+                        z++;
+                    }
+                }
+                if (x > 6) {
+                    ll.setVisibility(View.VISIBLE);
+                    graph_trend.setText("不優");
+                } else if (z > 10) {
+                    ll.setVisibility(View.VISIBLE);
+                    graph_trend.setText("優良");
+
+                }
+                else if(z==0&&x==0){
+                    ll.setVisibility(View.GONE);
+                }else {
+                    ll.setVisibility(View.VISIBLE);
+                    graph_trend.setText("普通");
                 }
 
                 LineDataSet blood_pressure_d = new LineDataSet(blood_pressure_values, "舒張壓");
@@ -257,9 +284,30 @@ public class LineGraphActivity extends DemoBase implements View.OnClickListener,
             case "血糖":
                 // bloodsugar
                 ArrayList<Entry> blood_sugar_values = new ArrayList<>();
+                int x1 = 0;
+                int z1 = 0;
                 for (int i = 0; i < bloodsugarList.size(); i++) {
                     BloodSugar bloodSugar = bloodsugarList.get(i);
                     blood_sugar_values.add(new Entry(i, Float.valueOf(bloodSugar.getBloodsugar())));
+                    Long s = Long.valueOf(bloodSugar.getBloodsugar());
+
+                    if (s > 130 || s < 90) {
+                        x1++;
+                    } else {
+                        z1++;
+                    }
+                }
+                if (x1 > 9) {
+                    ll.setVisibility(View.VISIBLE);
+                    graph_trend.setText("不優");
+                } else if (z1 > 15) {
+                    ll.setVisibility(View.VISIBLE);
+                    graph_trend.setText("優良");
+                }  else if(z1==0&&x1==0){
+                    ll.setVisibility(View.GONE);
+                }else {
+                    ll.setVisibility(View.VISIBLE);
+                    graph_trend.setText("普通");
                 }
 
                 LineDataSet blood_sugar_d = new LineDataSet(blood_sugar_values, "血糖");
@@ -274,11 +322,30 @@ public class LineGraphActivity extends DemoBase implements View.OnClickListener,
             case "體重":
                 // weight
                 ArrayList<Entry> weight_values = new ArrayList<>();
+                Person person_weight = Person.getInstance();
+               Double weightlast=Double.valueOf(0);
+               Double bmi=Double.valueOf(0);
+
                 for (int i = 0; i < weightList.size(); i++) {
                     Weight weight = weightList.get(i);
+                    weightlast=Double.valueOf(weight.getWeight());
                     weight_values.add(new Entry(i, Float.valueOf(weight.getWeight())));
                 }
-
+                double bmi_height;
+                bmi_height=Double.valueOf((person_weight.getHeight()))*Double.valueOf((person_weight.getHeight()));
+                bmi=weightlast/bmi_height/10000;
+                if(bmi<24&&bmi>18.5){
+                    ll.setVisibility(View.VISIBLE);
+                    graph_trend.setText("優良");
+                    Log.d("fuckWeight","" + bmi);
+                }
+                else if(bmi==0){
+                    ll.setVisibility(View.GONE);
+                }
+                else {
+                    ll.setVisibility(View.VISIBLE);
+                    graph_trend.setText("不優");
+                }
                 LineDataSet weight_d = new LineDataSet(weight_values, "體重");
                 weight_d.setLineWidth(2.5f);
                 weight_d.setCircleRadius(4f);
@@ -291,12 +358,23 @@ public class LineGraphActivity extends DemoBase implements View.OnClickListener,
                 break;
             case "運動":
                 // sport
+                Long sportalltime = 0l;
                 ArrayList<Entry> sport_values = new ArrayList<>();
                 for (int i = 0; i < sportList.size(); i++) {
                     Sport sport = sportList.get(i);
                     sport_values.add(new Entry(i, Float.valueOf(sport.getSportTime())));
+                    Long s = Long.valueOf(sport.getSportTime());
+                    sportalltime = s + sportalltime;
                 }
-
+                if (sportalltime == 0) {
+                    ll.setVisibility(View.GONE);
+                } else if (sportalltime < 150) {
+                    ll.setVisibility(View.VISIBLE);
+                    graph_trend.setText("不優");
+                } else {
+                    ll.setVisibility(View.VISIBLE);
+                    graph_trend.setText("優良");
+                }
                 LineDataSet sport_d = new LineDataSet(sport_values, "運動時數");
                 sport_d.setLineWidth(2.5f);
                 sport_d.setCircleRadius(4f);
@@ -322,9 +400,10 @@ public class LineGraphActivity extends DemoBase implements View.OnClickListener,
                 water_d.setColor(water_color);
                 water_d.setCircleColor(water_color);
                 dataSets.add(water_d);
+                ll.setVisibility(View.GONE);
                 break;
             case "尿液":
-                // wpee
+                // pee
                 ArrayList<Entry> pee_values = new ArrayList<>();
                 for (int i = 0; i < peeList.size(); i++) {
                     Pee pee = peeList.get(i);
@@ -339,15 +418,49 @@ public class LineGraphActivity extends DemoBase implements View.OnClickListener,
                 pee_d.setColor(pee_color);
                 pee_d.setCircleColor(pee_color);
                 dataSets.add(pee_d);
+                ll.setVisibility(View.GONE);
                 break;
             case "飲食":
                 // food
                 ArrayList<Entry> food_values = new ArrayList<>();
+                int totalHot = 0;
                 for (int i = 0; i < foodList.size(); i++) {
                     Food food = foodList.get(i);
+                    totalHot += Integer.valueOf(food.getHot());
                     food_values.add(new Entry(i, Float.valueOf(food.getHot())));
                 }
+                Person person = Person.getInstance();
+                String birth = person.getBirth().substring(0, 4);
+                if (person.getSex().equals("男")) {
+                    Long sample = Double.valueOf((665 + 1.38 * Integer.valueOf(person.getWeight()) + 5 * Integer.valueOf(person.getHeight()) -
+                            6.8 * (2019 - Integer.valueOf(birth)) * 1.3) * 7).longValue();
+                    if (sample + 300 > totalHot && totalHot > sample - 300) {
+                        ll.setVisibility(View.VISIBLE);
+                        graph_trend.setText("優良");
+//                        Log.d("fuckEat","" + sample);
 
+                    }else if (totalHot==0){
+                       ll.setVisibility(View.GONE);
+                    }
+                    else{
+                        ll.setVisibility(View.VISIBLE);
+                        graph_trend.setText("普通");
+                    }
+                } else {
+                    Long sample = Double.valueOf((665 + 9.6 * Integer.valueOf(person.getWeight()) + 1.9 * Integer.valueOf(person.getHeight()) -
+                            4.7 * (2019 - Integer.valueOf(birth)) * 1.3) * 7).longValue();
+                    if (sample + 300 > totalHot && totalHot > sample - 300) {
+                        ll.setVisibility(View.VISIBLE);
+                        graph_trend.setText("優良");
+
+                    }else if (totalHot==0){
+                        ll.setVisibility(View.GONE);
+                    }
+                    else{
+                        ll.setVisibility(View.VISIBLE);
+                        graph_trend.setText("普通");
+                    }
+                }
                 LineDataSet food_d = new LineDataSet(food_values, "熱量");
                 food_d.setLineWidth(2.5f);
                 food_d.setCircleRadius(4f);

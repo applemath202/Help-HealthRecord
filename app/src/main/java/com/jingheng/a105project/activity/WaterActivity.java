@@ -13,24 +13,38 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.data.Entry;
 import com.jingheng.a105project.R;
+import com.jingheng.a105project.model.Blood;
 import com.jingheng.a105project.model.Food;
+import com.jingheng.a105project.model.Pee;
 import com.jingheng.a105project.model.Water;
 import com.jingheng.a105project.model.Weight;
+import com.jingheng.a105project.sqlite.DAOBlood;
 import com.jingheng.a105project.sqlite.DAOFood;
+import com.jingheng.a105project.sqlite.DAOPee;
 import com.jingheng.a105project.sqlite.DAOWater;
 import com.jingheng.a105project.sqlite.DAOWeight;
 
 import java.lang.reflect.Array;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class WaterActivity extends CommonActivity implements View.OnClickListener {
 
     // ui
     private TextView tv_water_water;
+    private TextView suggest_water;
+    DAOPee daoPee;
+    private ArrayList<String> dateList;
+    private ArrayList<Pee> peeList;
+    private ArrayList<Pee> peedao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +54,57 @@ public class WaterActivity extends CommonActivity implements View.OnClickListene
         // ui
         tv_water_water = findViewById(R.id.tv_water_water);
         tv_water_water.setOnClickListener(this);
+        suggest_water =findViewById(R.id.suggest_water);
         findViewById(R.id.water_finish).setOnClickListener(this);
         findViewById(R.id.rv_water_report).setOnClickListener(this);
 
         addMainButton(R.id.water_toolbar);
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        dateList = new ArrayList<>();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.TAIWAN);
+        Date d = new Date();
+        Calendar cal = new GregorianCalendar(TimeZone.getTimeZone("GMT+8:00"));
+        try {
+            cal.setTime(sdf.parse(String.valueOf(d)));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        cal.add(Calendar.DATE, -1);
+        dateList.add(sdf.format(cal.getTime()));
+        peeList = new ArrayList<>();
+        peedao = new ArrayList<>();
+        DAOPee daoPee = new DAOPee(this);
+        peedao.addAll(daoPee.getAll());
+        for (Pee pee : peedao) {
+            for (String day : dateList) {
+                if (pee.getCreateDate().substring(0, 10).equals(day)) {
+                    peeList.add(pee);
+                }
+            }
+        }
+//        ArrayList<Entry> pee_values = new ArrayList<>();
+        Long h =0l ;
+
+        for (int i = 0; i < peeList.size(); i++) {
+            Pee pee = peeList.get(i);
+             Long sb= Long.valueOf(pee.getPee());
+            h =sb+h;
+
+        }
+        h=h+500;
+        int ii= new Long(h).intValue();
+
+        if(ii==500){
+            suggest_water.setText(" ");
+        }
+        else {
+            String s = Long.toString(h);
+            suggest_water.setText(s+"   毫升");
+
+        }
+
     }
 
     private void showScrollPicker(final String kind) {

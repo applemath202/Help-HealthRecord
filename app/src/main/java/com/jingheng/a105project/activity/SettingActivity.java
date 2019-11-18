@@ -36,8 +36,12 @@ import com.jingheng.a105project.sqlite.DAOAlarm;
 
 import org.w3c.dom.Text;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 import java.util.TimeZone;
 
 public class SettingActivity extends CommonActivity implements View.OnClickListener {
@@ -205,11 +209,11 @@ public class SettingActivity extends CommonActivity implements View.OnClickListe
         public void onDateTimeRecurrenceSet(SelectedDate selectedDate, int hourOfDay, int minute, SublimeRecurrencePicker.RecurrenceOption recurrenceOption, String recurrenceRule) {
             mSelectedDate = selectedDate;
             mHour = String.valueOf(hourOfDay);
-            if(mHour.length() == 1){
+            if (mHour.length() == 1) {
                 mHour = "0" + hourOfDay;
             }
             mMinute = String.valueOf(minute);
-            if(mMinute.length() == 1){
+            if (mMinute.length() == 1) {
                 mMinute = "0" + minute;
             }
             mRecurrenceOption = recurrenceOption != null ? recurrenceOption.name() : "n/a";
@@ -278,54 +282,133 @@ public class SettingActivity extends CommonActivity implements View.OnClickListe
     }
 
     private void setCal(Alarm alarm) {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", Locale.TAIWAN);
+        Date dt_wack_up;
+        Date dt_sleep;
+        Date dt_breakfast;
+        Date dt_lunch;
+        Date dt_dinner;
+        Date dt_sport;
+        Date dt_weight;
+        Date dt_system = new Date();
         Calendar cal_wake_up = new GregorianCalendar(TimeZone.getTimeZone("GMT+8:00"));
-        cal_wake_up.add(Calendar.DATE, 0);
-        cal_wake_up.set(Calendar.HOUR_OF_DAY, Integer.valueOf(alarm.getWakeup().substring(0,2)));
-        cal_wake_up.set(Calendar.MINUTE, Integer.valueOf(alarm.getWakeup().substring(3,5)));
+        try{
+            dt_wack_up = sdf.parse(alarm.getWakeup());
+            dt_system = sdf.parse(sdf.format(dt_system));
+            if (dt_system.getTime() < dt_wack_up.getTime()) {
+                cal_wake_up.add(Calendar.DATE, 0);
+            } else {
+                cal_wake_up.add(Calendar.DATE, 1);
+            }
+        }catch(Exception e){
+            Log.d("fuck", e.toString());
+        }
+//        cal_wake_up.add(Calendar.DATE, 0);
+        cal_wake_up.set(Calendar.HOUR_OF_DAY, Integer.valueOf(alarm.getWakeup().substring(0, 2)));
+        cal_wake_up.set(Calendar.MINUTE, Integer.valueOf(alarm.getWakeup().substring(3, 5)));
         cal_wake_up.set(Calendar.SECOND, 0);
-
-        Log.d("testAlarm", "time:" + Integer.valueOf(alarm.getWakeup().substring(0,2)) + Integer.valueOf(alarm.getWakeup().substring(3,5)));
+        Log.d("testAlarm", "time:" + Integer.valueOf(alarm.getWakeup().substring(0, 2)) + Integer.valueOf(alarm.getWakeup().substring(3, 5)));
         setAlarm("wakeUp", cal_wake_up);
 
         Calendar cal_sleep = new GregorianCalendar(TimeZone.getTimeZone("GMT+8:00"));
-        cal_sleep.add(Calendar.DATE, 0);
-        cal_sleep.set(Calendar.HOUR_OF_DAY, Integer.valueOf(alarm.getSleep().substring(0,2)));
-        cal_sleep.set(Calendar.MINUTE, Integer.valueOf(alarm.getSleep().substring(3,5)));
+        try{
+            dt_sleep = sdf.parse(alarm.getSleep());
+            dt_system = sdf.parse(sdf.format(dt_system));
+            if (dt_system.getTime() < dt_sleep.getTime()) {
+                cal_sleep.add(Calendar.DATE, 0);
+            } else {
+                cal_sleep.add(Calendar.DATE, 1);
+            }
+        }catch(Exception e){
+            Log.d("fuck", e.toString());
+        }
+        cal_sleep.set(Calendar.HOUR_OF_DAY, Integer.valueOf(alarm.getSleep().substring(0, 2)));
+        cal_sleep.set(Calendar.MINUTE, Integer.valueOf(alarm.getSleep().substring(3, 5)));
         cal_sleep.set(Calendar.SECOND, 0);
         setAlarm("sleep", cal_sleep);
 
         Calendar cal_breakfast = new GregorianCalendar(TimeZone.getTimeZone("GMT+8:00"));
-        cal_breakfast.add(Calendar.DATE, 0);
-        cal_breakfast.set(Calendar.HOUR_OF_DAY, Integer.valueOf(alarm.getBreakfast().substring(0,2)));
-        cal_breakfast.set(Calendar.MINUTE, Integer.valueOf(alarm.getBreakfast().substring(3,5)));
+        try{
+            dt_breakfast = sdf.parse(alarm.getBreakfast());
+            dt_system = sdf.parse(sdf.format(dt_system));
+            if (dt_system.getTime() < dt_breakfast.getTime()) {
+                cal_breakfast.add(Calendar.DATE, 0);
+            } else {
+                cal_breakfast.add(Calendar.DATE, 1);
+            }
+        }catch(Exception e){
+
+        }
+        cal_breakfast.set(Calendar.HOUR_OF_DAY, Integer.valueOf(alarm.getBreakfast().substring(0, 2)));
+        cal_breakfast.set(Calendar.MINUTE, Integer.valueOf(alarm.getBreakfast().substring(3, 5)));
         cal_breakfast.set(Calendar.SECOND, 0);
         setAlarm("breakfast", cal_breakfast);
 
         Calendar cal_lunch = new GregorianCalendar(TimeZone.getTimeZone("GMT+8:00"));
-        cal_lunch.add(Calendar.DATE, 0);
-        cal_lunch.set(Calendar.HOUR_OF_DAY, Integer.valueOf(alarm.getLunch().substring(0,2)));
-        cal_lunch.set(Calendar.MINUTE, Integer.valueOf(alarm.getLunch().substring(3,5)));
+        try{
+            dt_lunch = sdf.parse(alarm.getLunch());
+            dt_system = sdf.parse(sdf.format(dt_system));
+            if (dt_system.getTime() < dt_lunch.getTime()) {
+                cal_lunch.add(Calendar.DATE, 0);
+            } else {
+                cal_lunch.add(Calendar.DATE, 1);
+            }
+        }catch(Exception e){
+            Log.d("fuck", e.toString());
+        }
+        cal_lunch.set(Calendar.HOUR_OF_DAY, Integer.valueOf(alarm.getLunch().substring(0, 2)));
+        cal_lunch.set(Calendar.MINUTE, Integer.valueOf(alarm.getLunch().substring(3, 5)));
         cal_lunch.set(Calendar.SECOND, 0);
         setAlarm("lunch", cal_lunch);
 
         Calendar cal_dinner = new GregorianCalendar(TimeZone.getTimeZone("GMT+8:00"));
-        cal_dinner.add(Calendar.DATE, 0);
-        cal_dinner.set(Calendar.HOUR_OF_DAY, Integer.valueOf(alarm.getDinner().substring(0,2)));
-        cal_dinner.set(Calendar.MINUTE, Integer.valueOf(alarm.getDinner().substring(3,5)));
+        try{
+            dt_dinner = sdf.parse(alarm.getDinner());
+            dt_system = sdf.parse(sdf.format(dt_system));
+            if (dt_system.getTime() < dt_dinner.getTime()) {
+                cal_dinner.add(Calendar.DATE, 0);
+            } else {
+                cal_dinner.add(Calendar.DATE, 1);
+            }
+        }catch(Exception e){
+            Log.d("fuck", e.toString());
+        }
+        cal_dinner.set(Calendar.HOUR_OF_DAY, Integer.valueOf(alarm.getDinner().substring(0, 2)));
+        cal_dinner.set(Calendar.MINUTE, Integer.valueOf(alarm.getDinner().substring(3, 5)));
         cal_dinner.set(Calendar.SECOND, 0);
         setAlarm("dinner", cal_dinner);
 
         Calendar cal_sport = new GregorianCalendar(TimeZone.getTimeZone("GMT+8:00"));
-        cal_sport.add(Calendar.DATE, 0);
-        cal_sport.set(Calendar.HOUR_OF_DAY, Integer.valueOf(alarm.getSport().substring(0,2)));
-        cal_sport.set(Calendar.MINUTE, Integer.valueOf(alarm.getSport().substring(3,5)));
+        try{
+            dt_sport = sdf.parse(alarm.getSport());
+            dt_system = sdf.parse(sdf.format(dt_system));
+            if (dt_system.getTime() < dt_sport.getTime()) {
+                cal_sport.add(Calendar.DATE, 0);
+            } else {
+                cal_sport.add(Calendar.DATE, 1);
+            }
+        }catch(Exception e){
+            Log.d("fuck", e.toString());
+        }
+        cal_sport.set(Calendar.HOUR_OF_DAY, Integer.valueOf(alarm.getSport().substring(0, 2)));
+        cal_sport.set(Calendar.MINUTE, Integer.valueOf(alarm.getSport().substring(3, 5)));
         cal_sport.set(Calendar.SECOND, 0);
         setAlarm("sport", cal_sport);
 
         Calendar cal_weight = new GregorianCalendar(TimeZone.getTimeZone("GMT+8:00"));
-        cal_weight.add(Calendar.DATE, 0);
-        cal_weight.set(Calendar.HOUR_OF_DAY, Integer.valueOf(alarm.getWeight().substring(0,2)));
-        cal_weight.set(Calendar.MINUTE, Integer.valueOf(alarm.getWeight().substring(3,5)));
+        try{
+            dt_weight = sdf.parse(alarm.getWeight());
+            dt_system = sdf.parse(sdf.format(dt_system));
+            if (dt_system.getTime() < dt_weight.getTime()) {
+                cal_weight.add(Calendar.DATE, 0);
+            } else {
+                cal_weight.add(Calendar.DATE, 1);
+            }
+        }catch(Exception e){
+            Log.d("fuck", e.toString());
+        }
+        cal_weight.set(Calendar.HOUR_OF_DAY, Integer.valueOf(alarm.getWeight().substring(0, 2)));
+        cal_weight.set(Calendar.MINUTE, Integer.valueOf(alarm.getWeight().substring(3, 5)));
         cal_weight.set(Calendar.SECOND, 0);
         setAlarm("weight", cal_weight);
     }

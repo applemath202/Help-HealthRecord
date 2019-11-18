@@ -33,6 +33,7 @@ public class PlayReceiver extends BroadcastReceiver {
     private static final int DINNER_ID = 5;
     private static final int SPORT_ID = 6;
     private static final int WEIGHT_ID = 7;
+
     // 通知頻道分類代碼
     private String wakeUpId = "notify.channel.wake.up";
     private String sleepId = "notify.channel.sleep";

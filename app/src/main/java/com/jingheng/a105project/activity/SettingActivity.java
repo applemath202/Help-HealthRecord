@@ -292,6 +292,7 @@ public class SettingActivity extends CommonActivity implements View.OnClickListe
         Date dt_weight;
         Date dt_system = new Date();
         Calendar cal_wake_up = new GregorianCalendar(TimeZone.getTimeZone("GMT+8:00"));
+
         try{
             dt_wack_up = sdf.parse(alarm.getWakeup());
             dt_system = sdf.parse(sdf.format(dt_system));
@@ -306,6 +307,15 @@ public class SettingActivity extends CommonActivity implements View.OnClickListe
 //        cal_wake_up.add(Calendar.DATE, 0);
         cal_wake_up.set(Calendar.HOUR_OF_DAY, Integer.valueOf(alarm.getWakeup().substring(0, 2)));
         cal_wake_up.set(Calendar.MINUTE, Integer.valueOf(alarm.getWakeup().substring(3, 5)));
+
+        if(Integer.valueOf(String.valueOf(System.currentTimeMillis())) > Integer.valueOf(alarm.getWakeup())){
+            cal_wake_up.add(Calendar.DATE, 0);
+        }else{
+            cal_wake_up.add(Calendar.DATE, 1);
+        }
+        cal_wake_up.set(Calendar.HOUR_OF_DAY, Integer.valueOf(alarm.getWakeup().substring(0,2)));
+        cal_wake_up.set(Calendar.MINUTE, Integer.valueOf(alarm.getWakeup().substring(3,5)));
+
         cal_wake_up.set(Calendar.SECOND, 0);
         Log.d("testAlarm", "time:" + Integer.valueOf(alarm.getWakeup().substring(0, 2)) + Integer.valueOf(alarm.getWakeup().substring(3, 5)));
         setAlarm("wakeUp", cal_wake_up);

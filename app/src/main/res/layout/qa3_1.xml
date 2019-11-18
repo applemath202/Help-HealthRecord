@@ -18,7 +18,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
-                android:text="淺談腎臟"
+                android:text="蛋白質要多少才夠?"
                 android:textSize="20sp"
                 android:textColor="#FFF"
                 android:background="@color/colorPrimary"/>
@@ -30,7 +30,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:singleLine="false"
-                android:text="腎臟是人體的過濾系統，對我們的健康非常重要。\n\n人體有兩個腎臟，位於胸腔之下，脊椎左右各一個。形如蠶豆，拳頭般大小，重約114克。\n\n 正常的腎臟功能……\n 淨化血液並除去尿液中多餘的液體\n\n保持礦物質含量平衡\n（鈉、鈣、鉀、磷\n\n協助控制血壓\n\n 協助製造血細胞\n\n製造維生素D，以保持骨骼強健\n\n只要其中一個腎臟正常發揮至少20%的功能，我們就能保持健康。"
+                android:text="透析患者的蛋白質攝取需較一般人高，且透析病患營養的足夠與否預後有相當大的關係。每日每公斤體重須補充1.2~1.5公克的蛋白質，其中高生物價蛋白質如牛奶、魚、肉等，需佔三分之二。"
                 android:textSize="18sp" />
 
             <Button
@@ -40,7 +40,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="20dp"
-                android:layout_gravity="right"
+                android:layout_gravity="end"
                 android:text="返回"
                 android:textColor="#FFF"
                 android:background="@color/colorPrimary"

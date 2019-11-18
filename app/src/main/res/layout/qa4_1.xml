@@ -18,7 +18,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
-                android:text="淺談腎臟"
+                android:text="什麼是存活率?"
                 android:textSize="20sp"
                 android:textColor="#FFF"
                 android:background="@color/colorPrimary"/>
@@ -30,7 +30,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:singleLine="false"
-                android:text="腎臟是人體的過濾系統，對我們的健康非常重要。\n\n人體有兩個腎臟，位於胸腔之下，脊椎左右各一個。形如蠶豆，拳頭般大小，重約114克。\n\n 正常的腎臟功能……\n 淨化血液並除去尿液中多餘的液體\n\n保持礦物質含量平衡\n（鈉、鈣、鉀、磷\n\n協助控制血壓\n\n 協助製造血細胞\n\n製造維生素D，以保持骨骼強健\n\n只要其中一個腎臟正常發揮至少20%的功能，我們就能保持健康。"
+                android:text="在腎臟移植中存活率分成兩種，一是病人的存活率，另一則是移植(腎臟)的存活率。腎移植手術萬一失敗，則病人可以回來繼續作血液透析，對病人生命不構成危害，所以可能病人的存活率幾乎是百分之百。
+若將洗腎和換腎的病人存活率做比較，根據歐美的資料每年大概有5-10%之洗腎者不幸過世，這種死亡率每年持續下跌。 但腎臟移植的情形就不一樣，在剛換腎的病人死亡率與洗腎大致相同，而他們唯一的差別是過了三年後，腎移植病人的「死亡率」可減至每年5%之下"
                 android:textSize="18sp" />
 
             <Button
@@ -40,7 +41,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="20dp"
-                android:layout_gravity="right"
+                android:layout_gravity="end"
                 android:text="返回"
                 android:textColor="#FFF"
                 android:background="@color/colorPrimary"

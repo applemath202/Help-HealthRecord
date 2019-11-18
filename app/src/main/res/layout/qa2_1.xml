@@ -18,7 +18,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
-                android:text="淺談腎臟"
+                android:text="淺談腹膜透析"
                 android:textSize="20sp"
                 android:textColor="#FFF"
                 android:background="@color/colorPrimary"/>
@@ -30,7 +30,17 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:singleLine="false"
-                android:text="腎臟是人體的過濾系統，對我們的健康非常重要。\n\n人體有兩個腎臟，位於胸腔之下，脊椎左右各一個。形如蠶豆，拳頭般大小，重約114克。\n\n 正常的腎臟功能……\n 淨化血液並除去尿液中多餘的液體\n\n保持礦物質含量平衡\n（鈉、鈣、鉀、磷\n\n協助控制血壓\n\n 協助製造血細胞\n\n製造維生素D，以保持骨骼強健\n\n只要其中一個腎臟正常發揮至少20%的功能，我們就能保持健康。"
+                android:text="何謂腹膜透析
+
+腹膜是腹腔內一層包覆在內臟器官的薄膜，有豐富的微血管分佈。腹膜透析就是利用腹膜作為過濾、排除體內水分及廢物的一種方式。
+
+如何執行腹膜透析
+
+首先需在腹腔植入一條永久性導管，經由導管將透析液灌入腹腔存留一段時間，以腹膜作為透析的半透膜，將體內廢物及水分移除至腹腔內的透析液中，再引流出來。換液的技術，護理人員會不斷給予教導與重複練習，同時學習透析相關照護後，方可獨立執行居家腹膜透析治療。
+
+換液步驟
+
+每天必須操作數次的換液。一次的換液步驟將雙連袋換液管組與身上的輸液管連接，先引流出原先留置在腹腔內的透析液，再注入一袋新的透析液，最後分離管組，套上新的保護帽。"
                 android:textSize="18sp" />
 
             <Button
@@ -40,7 +50,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="20dp"
-                android:layout_gravity="right"
+                android:layout_gravity="end"
                 android:text="返回"
                 android:textColor="#FFF"
                 android:background="@color/colorPrimary"

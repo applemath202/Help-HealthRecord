@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="淺談腎臟"
+                android:textSize="25dp"
+                android:textColor="#FFF"
+                android:background="@color/colorPrimary"
+                android:popupTheme="@style/AppTheme.PopupOverlay"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:singleLine="false"
+                android:text="腎臟是人體的過濾系統，對我們的健康非常重要。\n\n人體有兩個腎臟，位於胸腔之下，脊椎左右各一個。形如蠶豆，拳頭般大小，重約114克。\n\n 正常的腎臟功能……\n 淨化血液並除去尿液中多餘的液體\n\n保持礦物質含量平衡\n（鈉、鈣、鉀、磷\n\n協助控制血壓\n\n 協助製造血細胞\n\n製造維生素D，以保持骨骼強健\n\n只要其中一個腎臟正常發揮至少20%的功能，我們就能保持健康。
+"
+                android:textSize="18dp" />
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="right"
+                android:text="返回"
+                android:textColor="#FFF"
+                android:background="@color/colorPrimary"
+                android:id="@+id/qa1_1_1_back"/>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
